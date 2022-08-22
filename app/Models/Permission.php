@@ -4,18 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Manager extends Authenticatable
+class Permission extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name', 'email', 'password',
-    ];
-
-    protected $hidden = [
-        'password', 'remember_token',
+        'parent_id', 'name', 'key_code',
     ];
 
     public function getRoles()

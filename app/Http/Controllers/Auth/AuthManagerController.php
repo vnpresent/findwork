@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Permission;
 use App\Services\Auth\AuthManagerService;
 use Illuminate\Http\Request;
 

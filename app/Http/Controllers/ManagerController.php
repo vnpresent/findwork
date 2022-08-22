@@ -28,4 +28,14 @@ class ManagerController extends Controller
     {
         return $this->managerService->createManage($request->name, $request->email, $request->password);
     }
+
+    public function showUpdateManagerForm($id)
+    {
+        return $this->managerService->showUpdateManagerForm($id);
+    }
+
+    public function updateManager(Request $request)
+    {
+
+    }
 }

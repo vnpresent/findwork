@@ -55,4 +55,28 @@ class validateInputManagerService
             return $validator->errors()->first();
         }
     }
+
+    public function validateIdManager($id)
+    {
+        $data = [
+            'id' => $id,
+        ];
+        $validator = Validator::make($data, [
+            'id' => 'required|integer|exists:managers,id',
+        ], [
+            'id.required' => 'Id không được trống',
+            'id.integer' => 'Id phải là số',
+            'id.exists' => 'Id không tồn tại',
+        ]);
+        if (!$validator->fails()) {
+            return true;
+        } else {
+            return $validator->errors()->first();
+        }
+    }
+
+    public function validateUpdateManager($id, $name, $email)
+    {
+
+    }
 }
