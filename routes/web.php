@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthManagerController;
+use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\Auth\AuthUserController;
 use App\Http\Controllers\Auth\AuthEmployerController;
 
@@ -18,12 +19,16 @@ use App\Http\Controllers\Auth\AuthEmployerController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('index');
 
 Route::group(['prefix' => 'manager'], function () {
     Route::get('login', [AuthManagerController::class, 'showLoginForm'])->name('manager.show-login-form');
-
     Route::post('login', [AuthManagerController::class, 'login'])->name('manager.login');
+
+    Route::get('dashboard', [ManagerController::class, 'dashboard'])->name('manager.dashboard');
+
+    Route::get('create-manager', [ManagerController::class, 'showCreateManageForm'])->name('manager.show-create-manager-form');
+    Route::post('create-manager', [ManagerController::class, 'createManage'])->name('manager.create-manager');
 });
 
 Route::group(['prefix' => 'user'], function () {

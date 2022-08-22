@@ -16,6 +16,11 @@ class validateInputUserService
         $validator = Validator::make($data,[
             'email'=>'required|email',
             'password'=>'required|string',
+        ],[
+            'email.required'=>'Email không được để trống',
+            'email.email'=>'Phải nhập vào Email',
+            'password.required'=>'Password không được để trống',
+            'password.string'=>'Password phải là chuỗi',
         ]);
         if (!$validator->fails())
         {
