@@ -27,11 +27,11 @@ Route::group(['prefix' => 'manager'], function () {
 
     Route::get('dashboard', [ManagerController::class, 'dashboard'])->name('manager.dashboard');
 
-    Route::get('create-manager', [ManagerController::class, 'showCreateManageForm'])->name('manager.show-create-manager-form');
-    Route::post('create-manager', [ManagerController::class, 'createManage'])->name('manager.create-manager');
+    Route::get('create-manager', [ManagerController::class, 'showCreateManageForm'])->name('manager.show-create-manager-form')->middleware('manager:create_manager');
+    Route::post('create-manager', [ManagerController::class, 'createManage'])->name('manager.create-manager')->middleware('manager:create_manager');
 
-    Route::get('update/{id}',[ManagerController::class, 'showUpdateManagerForm'])->name('manager.show-update-manager-form');
-    Route::post('update',[ManagerController::class, 'updateManager'])->name('manager.update-manager');
+    Route::get('update/{id}',[ManagerController::class, 'showUpdateManagerForm'])->name('manager.show-update-manager-form')->middleware('manager:update_manager');
+    Route::post('update',[ManagerController::class, 'updateManager'])->name('manager.update-manager')->middleware('manager:update_manager');
 });
 
 Route::group(['prefix' => 'user'], function () {
