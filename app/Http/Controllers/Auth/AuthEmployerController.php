@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 class AuthEmployerController extends Controller
 {
     protected $authEmployerService;
+
     public function __construct(AuthEmployerService $authEmployerService)
     {
         $this->authEmployerService = $authEmployerService;

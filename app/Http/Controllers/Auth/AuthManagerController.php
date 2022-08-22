@@ -15,7 +15,6 @@ class AuthManagerController extends Controller
         $this->authManagerService = $authManagerService;
     }
 
-    //
     public function showLoginForm()
     {
         return $this->authManagerService->showLoginForm();
