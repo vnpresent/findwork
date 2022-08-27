@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Permission;
-use App\Services\Auth\AuthManagerService;
+use App\Services\Auth\authManagerService;
 use Illuminate\Http\Request;
 
 class AuthManagerController extends Controller
 {
     protected $authManagerService;
 
-    public function __construct(AuthManagerService $authManagerService)
+    public function __construct(authManagerService $authManagerService)
     {
         $this->authManagerService = $authManagerService;
     }

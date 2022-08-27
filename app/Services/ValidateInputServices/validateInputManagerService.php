@@ -36,7 +36,7 @@ class validateInputManagerService
             'email' => $email,
             'password' => $password,
         ];
-        $validator = Validator::make($data, [
+        $validate = Validator::make($data, [
             'name' => 'required|string',
             'email' => 'required|email|unique:managers',
             'password' => 'required|string',
@@ -49,10 +49,10 @@ class validateInputManagerService
             'password.required' => 'Password không được để trống',
             'password.string' => 'Password phải là chuỗi',
         ]);
-        if (!$validator->fails()) {
+        if (!$validate->fails()) {
             return true;
         } else {
-            return $validator->errors()->first();
+            return $validate->errors()->first();
         }
     }
 

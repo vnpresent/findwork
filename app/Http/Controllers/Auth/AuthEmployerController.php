@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Services\Auth\AuthEmployerService;
+use App\Services\Auth\authEmployerService;
 use Illuminate\Http\Request;
 
 class AuthEmployerController extends Controller
 {
     protected $authEmployerService;
 
-    public function __construct(AuthEmployerService $authEmployerService)
+    public function __construct(authEmployerService $authEmployerService)
     {
         $this->authEmployerService = $authEmployerService;
     }

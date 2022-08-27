@@ -5,7 +5,7 @@ namespace App\Services\Auth;
 use App\Models\Manager;
 use App\Services\ValidateInputServices\validateInputManagerService;
 
-class AuthManagerService
+class authManagerService
 {
     protected $validateInputManagerService;
 

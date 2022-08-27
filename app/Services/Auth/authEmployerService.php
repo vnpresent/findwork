@@ -5,7 +5,7 @@ namespace App\Services\Auth;
 use App\Models\Manager;
 use App\Services\ValidateInputServices\validateInputManagerService;
 
-class AuthUserService
+class authEmployerService
 {
     protected $validateInputManagerService;
 
@@ -25,7 +25,7 @@ class AuthUserService
         if ($validate !== true) {
             return redirect()->back()->with(['error' => $validate]);
         }
-        $manager = auth('web')->attempt(['email' => $email, 'password' => $password]);
+        $manager = auth('employer')->attempt(['email' => $email, 'password' => $password]);
         dd($manager);
     }
 }

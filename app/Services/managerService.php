@@ -14,9 +14,9 @@ class managerService
         $this->validateInputManagerService = $validateInputManagerService;
     }
 
-    public function dashboard()
+    public function showAllManagers()
     {
-        return view('manager.dashboard');
+        return view('manager.all_manager');
     }
 
     public function showCreateManageForm()
@@ -78,13 +78,13 @@ class managerService
         }
     }
 
-//    public function updateManager($id,$name)
-//    {
-//        try {
-//
-//        }
-//        catch (\Exception $e){
-//
-//        }
-//    }
+    public function updateManager($id,$name,$roles)
+    {
+        try {
+
+        }
+        catch (\Exception $e){
+
+        }
+    }
 }

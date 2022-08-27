@@ -14,9 +14,9 @@ class ManagerController extends Controller
         $this->managerService = $managerService;
     }
 
-    public function dashboard()
+    public function showAllManagers()
     {
-        return $this->managerService->dashboard();
+        return $this->managerService->showAllManagers();
     }
 
     public function showCreateManageForm()
