@@ -2,7 +2,6 @@
 
 namespace App\Services\ValidateInputServices;
 
-
 use Illuminate\Support\Facades\Validator;
 
 class validateInputManagerService
@@ -22,10 +21,10 @@ class validateInputManagerService
             'password.required' => 'Password không được để trống',
             'password.string' => 'Password phải là chuỗi',
         ]);
-        if (!$validator->fails()) {
-            return true;
-        } else {
+        if ($validator->fails()) {
             return $validator->errors()->first();
+        } else {
+            return true;
         }
     }
 
@@ -49,10 +48,10 @@ class validateInputManagerService
             'password.required' => 'Password không được để trống',
             'password.string' => 'Password phải là chuỗi',
         ]);
-        if (!$validate->fails()) {
-            return true;
-        } else {
+        if ($validate->fails()) {
             return $validate->errors()->first();
+        } else {
+            return true;
         }
     }
 
@@ -68,10 +67,10 @@ class validateInputManagerService
             'id.integer' => 'Id phải là số',
             'id.exists' => 'Id không tồn tại',
         ]);
-        if (!$validator->fails()) {
-            return true;
-        } else {
+        if ($validator->fails()) {
             return $validator->errors()->first();
+        } else {
+            return true;
         }
     }
 

@@ -61,5 +61,6 @@ Route::group(['prefix' => 'employer'], function () {
     Route::get('login', [AuthEmployerController::class, 'showLoginForm'])->name('employer.show-login-form');
     Route::post('login', [AuthEmployerController::class, 'login'])->name('employer.login');
 
-    Route::get('create_post',[PostController::class,'showCreatePostForm'])->name('employer.create-post');
+    Route::get('create_post',[PostController::class,'showCreatePostForm'])->name('employer.show-create-post-form');
+    Route::post('create_post',[PostController::class,'createPost'])->name('employer.create-post');
 });

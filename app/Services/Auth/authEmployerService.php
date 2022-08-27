@@ -14,18 +14,28 @@ class authEmployerService
         $this->validateInputManagerService = $validateInputManagerService;
     }
 
-    public function showLoginForm()
+    public function showLoginEmployerForm()
     {
-        return view('manager.login');
+        return view('auth.employer.login');
     }
 
-    public function login($email, $password)
+    public function loginEmployer($email, $password)
     {
-        $validate = $this->validateInputManagerService->validateLoginManage($email, $password);
-        if ($validate !== true) {
-            return redirect()->back()->with(['error' => $validate]);
-        }
-        $manager = auth('employer')->attempt(['email' => $email, 'password' => $password]);
-        dd($manager);
+//        $validate = $this->validateInputManagerService->validateLoginManage($email, $password);
+//        if ($validate !== true) {
+//            return redirect()->back()->with(['error' => $validate]);
+//        }
+//        $manager = auth('employer')->attempt(['email' => $email, 'password' => $password]);
+//        dd($manager);
+    }
+
+    public function showRegisterEmployerForm()
+    {
+        return view('auth.employer.register');
+    }
+
+    public function registerEmployer()
+    {
+
     }
 }

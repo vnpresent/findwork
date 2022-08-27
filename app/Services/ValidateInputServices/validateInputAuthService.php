@@ -2,28 +2,28 @@
 
 namespace App\Services\ValidateInputServices;
 
-
 use Illuminate\Support\Facades\Validator;
 
-class validateInputUserService
+class validateInputAuthService
 {
-    public function validateLoginUser($email, $password)
+    public function validateInputAuthEmployer($email, $password)
     {
         $data = [
             'email' => $email,
             'password' => $password,
         ];
-        $validator = Validator::make($data, [
-            'email' => 'required|email',
-            'password' => 'required|string',
+        $validate = Validator::make($data, [
+            'email' => 'required|email|exists:employers,email',
+            'password' => 'required|string'
         ], [
             'email.required' => 'Email không được để trống',
-            'email.email' => 'Phải nhập vào Email',
+            'email.email' => 'Email không đúng định dạng',
+            'email.exists' => 'Email không tồn tại',
             'password.required' => 'Password không được để trống',
             'password.string' => 'Password phải là chuỗi',
         ]);
-        if ($validator->fails()) {
-            return $validator->errors()->first();
+        if ($validate->fails()) {
+            return $validate->errors()->first();
         } else {
             return true;
         }

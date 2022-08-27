@@ -11,7 +11,7 @@ class validateInputPostService
         $data = [
             'title'=>$title,
             'description'=>$description,
-            'number_of_applications'=>$number_applicants,
+            'number_applicants'=>$number_applicants,
             'min_salary'=>$min_salary,
             'max_salary'=>$max_salary,
             'start_date'=>$start_date,
@@ -20,34 +20,35 @@ class validateInputPostService
         $validate = Validator::make($data,[
             'title'=>'required|string',
             'description'=>'required|string',
-            'number_of_applications'=>'required|integer|min:1',
+            'number_applicants'=>'required|integer|min:1',
             'min_salary'=>'required|integer|min:0',
             'max_salary'=>'required|integer|min:0',
             'start_date'=>'required|date',
-            'end_date'=>'required|date',
+            'end_date'=>'required|date|after:start_date',
         ],[
-            'title.rerequired'=>'Tiêu đề không được để trống',
+            'title.required'=>'Tiêu đề không được để trống',
             'title.string'=>'Tiêu đề phải là chuỗi ký tự',
-            'description.rerequired'=>'Mô tả không được để trống',
+            'description.required'=>'Mô tả không được để trống',
             'description.string'=>'Mô tả phải là chuỗi ký tự',
-            'number_of_applications.rerequired'=>'Số lượng tuyển dụng không được để trống',
-            'number_of_applications.integer'=>'Số lượng tuyển dụng phải là số',
-            'number_of_applications.min'=>'Số lượng tuyển dụng phải lớn hơn 0',
-            'min_salary.rerequired'=>'Lương khởi điểm không được để trống',
-            'min_salary.integer'=>'Lương khởi điểm phải là số',
-            'min_salary.min'=>'Lương khởi điểm phải lớn hơn hoặc bằng 0',
-            'max_salary.rerequired'=>'Lương cao nhất không được để trống',
-            'max_salary.integer'=>'Lương cao nhất phải là số',
-            'max_salary.min'=>'Lương cao nhất phải lớn hơn hoặc bằng 0',
-            'start_date.rerequired'=>'Ngày bắt đầu tuyển không được để trống',
+            'number_applicants.required'=>'Số lượng tuyển không được để trống',
+            'number_applicants.integer'=>'Số lượng tuyển phải là số',
+            'number_applicants.min'=>'Số lượng tuyển phải lớn hơn 0',
+            'min_salary.required'=>'Lương tối thiểu không được để trống',
+            'min_salary.integer'=>'Lương tối thiểu phải là số',
+            'min_salary.min'=>'Lương tối thiểu phải lớn hơn hoặc bằng 0',
+            'max_salary.required'=>'Lương tối đa không được để trống',
+            'max_salary.integer'=>'Lương tối đa phải là số',
+            'max_salary.min'=>'Lương tối đa phải lớn hơn hoặc bằng 0',
+            'start_date.required'=>'Ngày bắt đầu tuyển không được để trống',
             'start_date.integer'=>'Ngày bắt đầu tuyển phải là định dạng ngày',
-            'end_date.rerequired'=>'Ngày kết thúc tuyển không được để trống',
+            'end_date.required'=>'Ngày kết thúc tuyển không được để trống',
             'end_date.integer'=>'Ngày kết thúc tuyển phải là định dạng ngày',
+            'end_date.after'=>'Ngày kết thúc tuyển phải sau ngày bắt đầu',
         ]);
-        if (!$validate->fails()) {
-            return true;
-        }else{
+        if ($validate->fails()) {
             return $validate->errors()->first();
+        }else{
+            return true;
         }
     }
 }

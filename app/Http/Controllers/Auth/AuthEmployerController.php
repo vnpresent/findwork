@@ -15,9 +15,9 @@ class AuthEmployerController extends Controller
         $this->authEmployerService = $authEmployerService;
     }
 
-    public function showLoginForm()
+    public function showLoginEmployerForm()
     {
-        return $this->authEmployerService->showLoginForm();
+        return $this->authEmployerService->showLoginEmployerForm();
     }
 
     public function login(Request $request)
