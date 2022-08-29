@@ -27,10 +27,12 @@ class managerService
     public function createManage($name, $email, $password)
     {
         try {
+            // validate name,email,password người dùng gửi lên,nếu thất bại back lại kèm lỗi
             $validate = $this->validateInputManagerService->validateCreateManager($name, $email, $password);
             if ($validate !== true) {
                 return redirect()->back()->with(['error' => $validate])->withInput();
             }
+            // nếu thành công tạo mới manager ,back lại kèm thông báo tạo tài khoản thành công
             Manager::create([
                 'name' => $name,
                 'email' => $email,

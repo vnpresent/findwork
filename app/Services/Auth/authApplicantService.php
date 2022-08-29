@@ -9,6 +9,7 @@ class authApplicantService
 {
     protected $validateInputAuthService;
 
+    // khai báo các service được dùng
     public function __construct(validateInputAuthService $validateInputAuthService)
     {
         $this->validateInputAuthService = $validateInputAuthService;
@@ -31,7 +32,7 @@ class authApplicantService
             // nếu validate thành công,xác thực đăng nhập,nếu thành công back về trang chủ,nếu thất lại back lại kèm lỗi sai tài khoản mật khẩu
             $manager = auth('applicant')->attempt(['email' => $email, 'password' => $password]);
             if ($manager) {
-                return redirect()->route('applicant.register');
+                return redirect()->route('index');
             } else {
                 return redirect()->back()->with(['error' => 'Thất bại,sai email hoặc mật khẩu'])->withInput();
             }
