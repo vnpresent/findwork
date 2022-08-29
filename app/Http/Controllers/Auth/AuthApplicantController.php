@@ -8,30 +8,30 @@ use Illuminate\Http\Request;
 
 class AuthApplicantController extends Controller
 {
-    protected $authUserService;
+    protected $authApplicantService;
 
-    public function __construct(authApplicantService $authUserService)
+    public function __construct(authApplicantService $authApplicantService)
     {
-        $this->authUserService = $authUserService;
+        $this->authApplicantService = $authApplicantService;
     }
 
     public function showLoginApplicantForm()
     {
-        return $this->authUserService->showLoginApplicantForm();
+        return $this->authApplicantService->showLoginApplicantForm();
     }
 
     public function loginApplicant(Request $request)
     {
-        return $this->authUserService->loginApplicant($request->email, $request->password);
+        return $this->authApplicantService->loginApplicant($request->email, $request->password);
     }
 
     public function showRegisterApplicantForm()
     {
-        return $this->authUserService->showRegisterApplicantForm();
+        return $this->authApplicantService->showRegisterApplicantForm();
     }
 
     public function registerApplicant(Request $request)
     {
-        return $this->authUserService->registerApplicant($request->name,$request->email, $request->password);
+        return $this->authApplicantService->registerApplicant($request->name,$request->email, $request->password);
     }
 }

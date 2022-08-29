@@ -57,6 +57,28 @@ class validateInputAuthService
         }
     }
 
+    public function validateInputLoginApplicant($email, $password)
+    {
+        $data = [
+            'email' => $email,
+            'password' => $password,
+        ];
+        $validate = Validator::make($data, [
+            'email' => 'required|email',
+            'password' => 'required|string'
+        ], [
+            'email.required' => 'Email không được để trống',
+            'email.email' => 'Email không đúng định dạng',
+            'password.required' => 'Password không được để trống',
+            'password.string' => 'Password phải là chuỗi',
+        ]);
+        if ($validate->fails()) {
+            return $validate->errors()->first();
+        } else {
+            return true;
+        }
+    }
+
     public function validateInputRegisterApplicant($name, $email, $password)
     {
         $data = [
