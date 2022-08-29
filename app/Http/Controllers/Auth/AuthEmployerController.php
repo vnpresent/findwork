@@ -20,8 +20,18 @@ class AuthEmployerController extends Controller
         return $this->authEmployerService->showLoginEmployerForm();
     }
 
-    public function login(Request $request)
+    public function loginEmployer(Request $request)
     {
-        return $this->authEmployerService->login($request->email, $request->password);
+        return $this->authEmployerService->loginEmployer($request->email, $request->password);
+    }
+
+    public function showRegisterEmployerForm()
+    {
+        return $this->authEmployerService->showRegisterEmployerForm();
+    }
+
+    public function registerEmployer(Request $request)
+    {
+        return $this->authEmployerService->registerEmployer($request->company_name, $request->email, $request->password);
     }
 }

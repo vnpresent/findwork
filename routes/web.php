@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthManagerController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\RoleController;
-use App\Http\Controllers\Auth\AuthUserController;
+use App\Http\Controllers\Auth\AuthApplicantController;
 use App\Http\Controllers\Auth\AuthEmployerController;
 
 /*
@@ -19,9 +20,13 @@ use App\Http\Controllers\Auth\AuthEmployerController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('index');
+Route::get('/', [IndexController::class,'index'])->name('index');
+
+
+
+
+
+
 
 
 // quản lý tài khoản manager
@@ -51,16 +56,29 @@ Route::group(['prefix' => 'role'],function (){
 });
 
 
-Route::group(['prefix' => 'user'], function () {
-    Route::get('login', [AuthUserController::class, 'showLoginForm'])->name('user.show-login-form');
+Route::group(['prefix' => 'applicant'], function () {
+    // đăng nhập applicant
+    Route::get('login', [AuthApplicantController::class, 'showLoginApplicantForm'])->name('applicant.show-login-form');
+    Route::post('login', [AuthApplicantController::class, 'loginApplicant'])->name('applicant.login');
 
-    Route::post('login', [AuthUserController::class, 'login'])->name('user.login');
+    //đăng ký applicant
+    Route::get('register',[AuthApplicantController::class, 'showRegisterApplicantForm'])->name('applicant.show-register-form');
+    Route::post('register', [AuthApplicantController::class, 'registerApplicant'])->name('applicant.register');
+
+
 });
 
-Route::group(['prefix' => 'employer'], function () {
-    Route::get('login', [AuthEmployerController::class, 'showLoginForm'])->name('employer.show-login-form');
-    Route::post('login', [AuthEmployerController::class, 'login'])->name('employer.login');
 
+Route::group(['prefix' => 'employer'], function () {
+    // đăng nhập với employer-người tuyển dụng
+    Route::get('login', [AuthEmployerController::class, 'showLoginEmployerForm'])->name('employer.show-login-form');
+    Route::post('login', [AuthEmployerController::class, 'loginEmployer'])->name('employer.login');
+
+    // đăng ký employer-người tuyển dụng
+    Route::get('register',[AuthEmployerController::class, 'showRegisterEmployerForm'])->name('employer.show-register-form');
+    Route::post('register', [AuthEmployerController::class, 'registerEmployer'])->name('employer.register');
+
+    // tạo mới bài đăng tuyển dụng
     Route::get('create_post',[PostController::class,'showCreatePostForm'])->name('employer.show-create-post-form');
     Route::post('create_post',[PostController::class,'createPost'])->name('employer.create-post');
 });

@@ -32,4 +32,9 @@ class Manager extends Authenticatable
     {
         return $this->belongsToMany(Role::class);
     }
+
+    public function getPermissions()
+    {
+        return $this->hasManyThrough(Permission::class,Role::class);
+    }
 }

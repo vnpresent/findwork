@@ -11,7 +11,7 @@ class Employer extends Authenticatable
     use HasFactory;
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'company_name', 'email', 'password',
     ];
 
     protected $hidden = [

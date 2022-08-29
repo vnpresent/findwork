@@ -25,9 +25,9 @@
 
 
     @if(session('error'))
-        {{ session('error') }}}
+        {{ session('error') }}
     @endif
     @if(session('success'))
-        {{ session('success') }}}
+        {{ session('success') }}
     @endif
 </form>

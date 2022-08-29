@@ -33,7 +33,7 @@ class postService
                 'employer_id' => auth('employer')->user()->id,
                 'title' => $title,
                 'description' => $description,
-                'number_of_applications' => $number_applicants,
+                'number_applicants' => $number_applicants,
                 'min_salary' => $min_salary,
                 'max_salary' => $max_salary,
                 'start_date' => $start_date,

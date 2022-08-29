@@ -5,7 +5,7 @@ namespace App\Services\ValidateInputServices;
 
 use Illuminate\Support\Facades\Validator;
 
-class validateInputUserService
+class validateInputApplicantService
 {
     public function validateLoginUser($email, $password)
     {

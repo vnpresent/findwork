@@ -7,5 +7,5 @@
     <input type="password" name="password" id="">
 
     <button type="submit">Đăng nhập</button>
-    {{ session('error')?session('error'):'' }}}
+    {{ session('error')?session('error'):'' }}
 </form>

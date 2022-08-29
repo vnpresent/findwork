@@ -5,3 +5,4 @@
     <button type="submit">Đăng nhập </button>
 </form>
 
+{{ session('error')?session('error'):'' }}

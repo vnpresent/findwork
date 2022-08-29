@@ -2,16 +2,16 @@
 
 namespace App\Services\Auth;
 
-use App\Models\Manager;
-use App\Services\ValidateInputServices\validateInputManagerService;
+use App\Models\Employer;
+use App\Services\ValidateInputServices\Auth\validateInputAuthService;
 
 class authEmployerService
 {
-    protected $validateInputManagerService;
+    protected $validateInputAuthService;
 
-    public function __construct(validateInputManagerService $validateInputManagerService)
+    public function __construct(validateInputAuthService $validateInputAuthService)
     {
-        $this->validateInputManagerService = $validateInputManagerService;
+        $this->validateInputAuthService = $validateInputAuthService;
     }
 
     public function showLoginEmployerForm()
@@ -21,12 +21,20 @@ class authEmployerService
 
     public function loginEmployer($email, $password)
     {
-//        $validate = $this->validateInputManagerService->validateLoginManage($email, $password);
-//        if ($validate !== true) {
-//            return redirect()->back()->with(['error' => $validate]);
-//        }
-//        $manager = auth('employer')->attempt(['email' => $email, 'password' => $password]);
-//        dd($manager);
+        try {
+            $validate = $this->validateInputAuthService->validateInputLoginEmployer($email, $password);
+            if ($validate !== true) {
+                return redirect()->back()->with(['error' => $validate])->withInput();
+            }
+            $manager = auth('employer')->attempt(['email' => $email, 'password' => $password]);
+            if ($manager) {
+                return redirect()->route('employer.create-post');
+            } else {
+                return redirect()->back()->with(['error' => 'Thất bại,sai email hoặc mật khẩu'])->withInput();
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra'])->withInput();
+        }
     }
 
     public function showRegisterEmployerForm()
@@ -34,8 +42,21 @@ class authEmployerService
         return view('auth.employer.register');
     }
 
-    public function registerEmployer()
+    public function registerEmployer($company_name, $email, $password)
     {
-
+        try {
+            $validate = $this->validateInputAuthService->validateInputRegisterEmployer($company_name, $email, $password);
+            if ($validate !== true) {
+                return redirect()->back()->with(['error' => $validate])->withInput();
+            }
+            $employer = Employer::create([
+                'company_name' => $company_name,
+                'email' => $email,
+                'password' => bcrypt($password),
+            ]);
+            return redirect()->back()->with(['success' => 'Đăng ký thành công']);
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra'])->withInput();
+        }
     }
 }

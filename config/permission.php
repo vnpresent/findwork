@@ -12,6 +12,6 @@ return [
         'employer',
         'manager',
         'role',
-        'user',
+        'applicant',
     ],
 ];
