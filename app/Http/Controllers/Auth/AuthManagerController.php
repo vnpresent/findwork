@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\Permission;
 use App\Services\Auth\authManagerService;
 use Illuminate\Http\Request;
 
@@ -18,11 +17,11 @@ class AuthManagerController extends Controller
 
     public function showLoginForm()
     {
-        return $this->authManagerService->showLoginForm();
+        return $this->authManagerService->showLoginManagerForm();
     }
 
     public function login(Request $request)
     {
-        return $this->authManagerService->login($request->email, $request->password);
+        return $this->authManagerService->loginManager($request->email, $request->password, $request->remember);
     }
 }

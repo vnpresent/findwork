@@ -3,17 +3,18 @@
 namespace App\Services\Auth;
 
 use App\Interfaces\Auth\AuthApplicantRepositoryInterface;
-use App\Services\ValidateInputServices\Auth\validateInputAuthService;
+use App\Services\ValidateInputServices\Auth\validateInputAuthApplicantService;
+use App\Services\ValidateInputServices\Auth\validateInputAuthEmployerService;
 
 class authApplicantService
 {
-    protected $validateInputAuthService;
+    protected $validateInputAuthApplicantService;
     protected $authApplicantRepository;
 
     // khai báo các service,repository được dùng
-    public function __construct(validateInputAuthService $validateInputAuthService, AuthApplicantRepositoryInterface $authApplicantRepository)
+    public function __construct(validateInputAuthApplicantService $validateInputAuthApplicantService, AuthApplicantRepositoryInterface $authApplicantRepository)
     {
-        $this->validateInputAuthService = $validateInputAuthService;
+        $this->validateInputAuthApplicantService = $validateInputAuthApplicantService;
         $this->authApplicantRepository = $authApplicantRepository;
     }
 
@@ -27,7 +28,7 @@ class authApplicantService
     {
         try {
             // validate email,password người dùng gửi lên,nếu không thành công back lại kèm lỗi
-            $validate = $this->validateInputAuthService->validateInputLoginApplicant($email, $password, $remember);
+            $validate = $this->validateInputAuthApplicantService->validateInputLoginApplicant($email, $password, $remember);
             if ($validate !== true) {
                 return redirect()->back()->with(['error' => $validate]);
             }
@@ -53,7 +54,7 @@ class authApplicantService
     {
         try {
             // validate name,email,password người dùng gửi lên
-            $validate = $this->validateInputAuthService->validateInputRegisterApplicant($name, $email, $password);
+            $validate = $this->validateInputAuthApplicantService->validateInputRegisterApplicant($name, $email, $password);
             // kiểm tra xem có validate thành công không,nếu không thành công back lại kèm lỗi và input cũ
             if ($validate !== true) {
                 return redirect()->back()->with(['error' => $validate])->withInput();

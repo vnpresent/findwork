@@ -3,25 +3,26 @@
 namespace App\Services\Auth;
 
 use App\Models\Manager;
+use App\Services\ValidateInputServices\Auth\validateInputAuthManagerService;
 use App\Services\ValidateInputServices\validateInputManagerService;
 
 class authManagerService
 {
-    protected $validateInputManagerService;
+    protected $validateInputAuthManagerService;
 
-    public function __construct(validateInputManagerService $validateInputManagerService)
+    public function __construct(validateInputAuthManagerService $validateInputAuthManagerService)
     {
-        $this->validateInputManagerService = $validateInputManagerService;
+        $this->validateInputAuthManagerService = $validateInputAuthManagerService;
     }
 
-    public function showLoginForm()
+    public function showLoginManagerForm()
     {
-        return view('manager.login');
+        return view('auth.manager.login');
     }
 
-    public function login($email, $password)
+    public function loginManager($email, $password, $remember)
     {
-        $validate = $this->validateInputManagerService->validateLoginManager($email, $password);
+        $validate = $this->validateInputAuthManagerService->validateInputLoginManager($email, $password, $remember);
         if ($validate !== true) {
             return redirect()->back()->with(['error' => $validate]);
         }

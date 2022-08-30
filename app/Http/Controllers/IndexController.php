@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cv;
 use App\Services\indexService;
 use Illuminate\Http\Request;
 

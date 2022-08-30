@@ -2,16 +2,19 @@
 
 namespace App\Services\Auth;
 
+use App\Interfaces\Auth\AuthEmployerRepositoryInterface;
 use App\Models\Employer;
-use App\Services\ValidateInputServices\Auth\validateInputAuthService;
+use App\Services\ValidateInputServices\Auth\validateInputAuthEmployerService;
 
 class authEmployerService
 {
     protected $validateInputAuthService;
+    protected $authEmployerRepository;
 
-    public function __construct(validateInputAuthService $validateInputAuthService)
+    public function __construct(validateInputAuthEmployerService $validateInputAuthService, AuthEmployerRepositoryInterface $authEmployerRepository)
     {
         $this->validateInputAuthService = $validateInputAuthService;
+        $this->authEmployerRepository = $authEmployerRepository;
     }
 
     public function showLoginEmployerForm()
@@ -19,15 +22,15 @@ class authEmployerService
         return view('auth.employer.login');
     }
 
-    public function loginEmployer($email, $password)
+    public function loginEmployer($email, $password, $remember)
     {
         try {
-            $validate = $this->validateInputAuthService->validateInputLoginEmployer($email, $password);
+            $validate = $this->validateInputAuthService->validateInputLoginEmployer($email, $password, $remember);
             if ($validate !== true) {
                 return redirect()->back()->with(['error' => $validate])->withInput();
             }
-            $manager = auth('employer')->attempt(['email' => $email, 'password' => $password]);
-            if ($manager) {
+            $employer = $this->authEmployerRepository->loginEmployer($email, $password, $remember);
+            if ($employer) {
                 return redirect()->route('employer.create-post');
             } else {
                 return redirect()->back()->with(['error' => 'Thất bại,sai email hoặc mật khẩu'])->withInput();

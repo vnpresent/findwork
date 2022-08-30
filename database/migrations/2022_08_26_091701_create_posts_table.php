@@ -12,7 +12,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->bigInteger('employer_id')->unsigned();
             $table->string('title');
-            $table->text('description');
+            $table->longText('description');
             $table->integer('number_applicants');
             $table->integer('min_salary');
             $table->integer('max_salary');
