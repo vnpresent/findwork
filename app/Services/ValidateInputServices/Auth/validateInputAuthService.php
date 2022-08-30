@@ -6,22 +6,26 @@ use Illuminate\Support\Facades\Validator;
 
 class validateInputAuthService
 {
-    public function validateInputLoginEmployer($email, $password)
+    public function validateInputLoginEmployer($email, $password, $remember)
     {
         $data = [
             'email' => $email,
             'password' => $password,
+            'remember' => $remember,
         ];
         $validate = Validator::make($data, [
             'email' => 'required|email',
 //            |exists:employers,email
-            'password' => 'required|string'
+            'password' => 'required|string',
+            'remember' => 'required|boolean',
         ], [
             'email.required' => 'Email không được để trống',
             'email.email' => 'Email không đúng định dạng',
 //            'email.exists' => 'Email không tồn tại',
             'password.required' => 'Password không được để trống',
             'password.string' => 'Password phải là chuỗi',
+            'remember.required' => 'Remember không được để trống',
+            'remember.boolean' => 'Remember phải là true false',
         ]);
         if ($validate->fails()) {
             return $validate->errors()->first();
@@ -57,20 +61,24 @@ class validateInputAuthService
         }
     }
 
-    public function validateInputLoginApplicant($email, $password)
+    public function validateInputLoginApplicant($email, $password, $remember)
     {
         $data = [
             'email' => $email,
             'password' => $password,
+            'remember' => $remember,
         ];
         $validate = Validator::make($data, [
             'email' => 'required|email',
-            'password' => 'required|string'
+            'password' => 'required|string',
+            'remember' => 'required|boolean',
         ], [
             'email.required' => 'Email không được để trống',
             'email.email' => 'Email không đúng định dạng',
             'password.required' => 'Password không được để trống',
             'password.string' => 'Password phải là chuỗi',
+            'remember.required' => 'Remember không được để trống',
+            'remember.boolean' => 'Remember phải là true false',
         ]);
         if ($validate->fails()) {
             return $validate->errors()->first();

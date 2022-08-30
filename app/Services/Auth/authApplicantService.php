@@ -2,17 +2,19 @@
 
 namespace App\Services\Auth;
 
-use App\Models\Applicant;
+use App\Interfaces\Auth\AuthApplicantRepositoryInterface;
 use App\Services\ValidateInputServices\Auth\validateInputAuthService;
 
 class authApplicantService
 {
     protected $validateInputAuthService;
+    protected $authApplicantRepository;
 
-    // khai báo các service được dùng
-    public function __construct(validateInputAuthService $validateInputAuthService)
+    // khai báo các service,repository được dùng
+    public function __construct(validateInputAuthService $validateInputAuthService, AuthApplicantRepositoryInterface $authApplicantRepository)
     {
         $this->validateInputAuthService = $validateInputAuthService;
+        $this->authApplicantRepository = $authApplicantRepository;
     }
 
     public function showLoginApplicantForm()
@@ -21,16 +23,16 @@ class authApplicantService
         return view('auth.applicant.login');
     }
 
-    public function loginApplicant($email, $password)
+    public function loginApplicant($email, $password, $remember)
     {
         try {
             // validate email,password người dùng gửi lên,nếu không thành công back lại kèm lỗi
-            $validate = $this->validateInputAuthService->validateInputLoginApplicant($email, $password);
+            $validate = $this->validateInputAuthService->validateInputLoginApplicant($email, $password, $remember);
             if ($validate !== true) {
                 return redirect()->back()->with(['error' => $validate]);
             }
             // nếu validate thành công,xác thực đăng nhập,nếu thành công back về trang chủ,nếu thất lại back lại kèm lỗi sai tài khoản mật khẩu
-            $manager = auth('applicant')->attempt(['email' => $email, 'password' => $password]);
+            $manager = $this->authApplicantRepository->loginApplicant($email, $password, $remember);
             if ($manager) {
                 return redirect()->route('index');
             } else {
@@ -57,12 +59,12 @@ class authApplicantService
                 return redirect()->back()->with(['error' => $validate])->withInput();
             }
             // thành công tạo mới applicant và back lại kèm thông báo đăng ký thành công
-            $applicant = Applicant::create([
-                'name' => $name,
-                'email' => $email,
-                'password' => bcrypt($password),
-            ]);
-            return redirect()->back()->with(['success' => 'Đăng ký thành công']);
+            $applicant = $this->authApplicantRepository->registerApplicant($name, $email, $password);
+            if ($applicant) {
+                return redirect()->back()->with(['success' => 'Đăng ký thành công']);
+            } else {
+                return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra'])->withInput();
+            }
         } catch (\Exception $e) {
             return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra'])->withInput();
         }
