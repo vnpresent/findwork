@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Services\Auth\authManagerService;
+use App\Services\AuthService\authManagerService;
 use Illuminate\Http\Request;
 
 class AuthManagerController extends Controller

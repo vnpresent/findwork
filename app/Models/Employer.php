@@ -11,7 +11,7 @@ class Employer extends Authenticatable
     use HasFactory,SoftDeletes;
 
     protected $fillable = [
-        'company_name', 'email', 'password',
+        'name', 'email', 'password',
     ];
 
     protected $hidden = [

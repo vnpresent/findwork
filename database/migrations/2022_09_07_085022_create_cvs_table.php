@@ -15,6 +15,7 @@ class CreateCvsTable extends Migration
     {
         Schema::create('cvs', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('applicant_id')->unsigned();
             $table->text('image');
             $table->string('name');
             $table->date('birthday');
@@ -25,6 +26,7 @@ class CreateCvsTable extends Migration
             $table->json('work_experience');
             $table->json('skill');
             $table->json('activities');
+            $table->foreign('applicant_id')->references('id')->on('applicants');
             $table->timestamps();
         });
     }

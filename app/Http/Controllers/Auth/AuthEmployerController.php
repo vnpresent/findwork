@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Services\Auth\authEmployerService;
+use App\Services\AuthService\authEmployerService;
 use Illuminate\Http\Request;
 
 class AuthEmployerController extends Controller
@@ -32,6 +32,6 @@ class AuthEmployerController extends Controller
 
     public function registerEmployer(Request $request)
     {
-        return $this->authEmployerService->registerEmployer($request->company_name, $request->email, $request->password);
+        return $this->authEmployerService->registerEmployer($request->name, $request->email, $request->password);
     }
 }

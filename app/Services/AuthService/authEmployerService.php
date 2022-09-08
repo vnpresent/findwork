@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Services\Auth;
+namespace App\Services\AuthService;
 
 use App\Interfaces\Auth\AuthEmployerRepositoryInterface;
 use App\Models\Employer;
-use App\Services\ValidateInputServices\Auth\validateInputAuthEmployerService;
+use App\Services\ValidateInputServices\ValidateInputAuthService\validateInputAuthEmployerService;
 
 class authEmployerService
 {
@@ -45,15 +45,15 @@ class authEmployerService
         return view('auth.employer.register');
     }
 
-    public function registerEmployer($company_name, $email, $password)
+    public function registerEmployer($name, $email, $password)
     {
         try {
-            $validate = $this->validateInputAuthService->validateInputRegisterEmployer($company_name, $email, $password);
+            $validate = $this->validateInputAuthService->validateInputRegisterEmployer($name, $email, $password);
             if ($validate !== true) {
                 return redirect()->back()->with(['error' => $validate])->withInput();
             }
             $employer = Employer::create([
-                'company_name' => $company_name,
+                'name' => $name,
                 'email' => $email,
                 'password' => bcrypt($password),
             ]);

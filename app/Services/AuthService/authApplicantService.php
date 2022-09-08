@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Services\Auth;
+namespace App\Services\AuthService;
 
 use App\Interfaces\Auth\AuthApplicantRepositoryInterface;
-use App\Services\ValidateInputServices\Auth\validateInputAuthApplicantService;
-use App\Services\ValidateInputServices\Auth\validateInputAuthEmployerService;
+use App\Services\ValidateInputServices\ValidateInputAuthService\validateInputAuthApplicantService;
+use App\Services\ValidateInputServices\ValidateInputAuthService\validateInputAuthEmployerService;
 
 class authApplicantService
 {

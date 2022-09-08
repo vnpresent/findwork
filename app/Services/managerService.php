@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\Manager;
-use App\Services\ValidateInputServices\Auth\validateInputAuthManagerService;
+use App\Services\ValidateInputServices\ValidateInputAuthService\validateInputAuthManagerService;
 use App\Services\ValidateInputServices\validateInputManagerService;
 
 class managerService

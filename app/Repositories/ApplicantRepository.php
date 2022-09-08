@@ -9,12 +9,12 @@ class ApplicantRepository implements ApplicantRepositoryInterface
 {
     public function getAllApplicants()
     {
-        return Applicant::all();
+        return Applicant::all()->toArray();
     }
 
     public function getApplicant($id)
     {
-        return Applicant::find($id);
+        return Applicant::find($id)->toArray();
     }
 
     public function updateApplicant($id, $name, $password)
@@ -26,8 +26,7 @@ class ApplicantRepository implements ApplicantRepositoryInterface
         if ($password !== null) {
             $data['password'] = bcrypt($password);
         }
-        $applicant = Applicant::find($id);
-        return $applicant->update($data);
+        return Applicant::find($id)->update($data);
     }
 
     public function deleteApplicant($id)

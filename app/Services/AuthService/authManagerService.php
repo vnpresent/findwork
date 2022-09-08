@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Services\Auth;
+namespace App\Services\AuthService;
 
 use App\Models\Manager;
-use App\Services\ValidateInputServices\Auth\validateInputAuthManagerService;
+use App\Services\ValidateInputServices\ValidateInputAuthService\validateInputAuthManagerService;
 use App\Services\ValidateInputServices\validateInputManagerService;
 
 class authManagerService

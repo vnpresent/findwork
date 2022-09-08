@@ -5,12 +5,10 @@ namespace App\Services\ValidateInputServices;
 
 use Illuminate\Support\Facades\Validator;
 
-class validateInputApplicantService
+class validateInputEmployerService
 {
-    public function validateInputUpdateApplicant()
+    public function validateInputUpdateEmployer()
     {
 
     }
-
-
 }

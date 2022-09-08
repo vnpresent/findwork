@@ -29,7 +29,7 @@ class postService
     {
         try {
             // validate các thông tin employer gửi lên,nếu thất bại,quay trở lại kèm lỗi
-            $validate = $this->validateInputPostService->validateCreatePost($title, $description, $numberApplicants, $minSalary, $maxSalary, $startDate, $endDate);
+            $validate = $this->validateInputPostService->validateInputCreatePost($title, $description, $numberApplicants, $minSalary, $maxSalary, $startDate, $endDate);
             if ($validate !== true) {
                 return redirect()->back()->with(['error' => $validate])->withInput();
             }

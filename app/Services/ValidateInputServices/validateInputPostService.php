@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Validator;
 
 class validateInputPostService
 {
-    public function validateCreatePost($title, $description, $number_applicants, $min_salary, $max_salary, $start_date, $end_date)
+    public function validateInputCreatePost($title, $description, $number_applicants, $min_salary, $max_salary, $start_date, $end_date)
     {
         $data = [
             'title' => $title,
@@ -52,22 +52,8 @@ class validateInputPostService
         }
     }
 
-    public function validateInputPostId($id)
+    public function validateInputUpdatePost($title, $description, $number_applicants, $min_salary, $max_salary, $start_date, $end_date)
     {
-        $data = [
-            'id' => $id,
-        ];
-        $validate = Validator::make($data, [
-            'id' => 'required|integer|exists:posts,id'
-        ], [
-            'id.required' => 'Id không được trống',
-            'id.integer' => 'Id phải là số',
-            'id.exists' => 'Id không tồn tại',
-        ]);
-        if ($validate->fails()) {
-            return $validate->errors()->first();
-        } else {
-            return true;
-        }
+        return $this->validateInputCreatePost($title, $description, $number_applicants, $min_salary, $max_salary, $start_date, $end_date);
     }
 }
