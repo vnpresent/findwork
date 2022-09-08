@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\managerService;
+use App\Services\ManagerService\managerService;
 use Illuminate\Http\Request;
 
 class ManagerController extends Controller

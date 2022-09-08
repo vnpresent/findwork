@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\IndexService;
 
 use App\Interfaces\ManagerRepositoryInterface;
 use App\Models\Post;

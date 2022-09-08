@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\ManagerService;
 
 use App\Models\Manager;
 use App\Services\ValidateInputServices\ValidateInputAuthService\validateInputAuthManagerService;
@@ -43,7 +43,7 @@ class managerService
             ]);
             return redirect()->back()->with(['success' => 'Đã tạo tài khoản quản lý thành công']);
         } catch (\Exception $e) {
-            return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra'])->withInput();
+            return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau'])->withInput();
         }
     }
 
@@ -65,7 +65,7 @@ class managerService
 //        catch (\Exception $e){
 //            return [
 //                'status'=>false,
-//                'data' => 'Thất bại,có lỗi sảy ra'
+//                'data' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau'
 //            ];
 //        }
     }

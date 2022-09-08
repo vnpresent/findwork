@@ -40,7 +40,7 @@ class authApplicantService
                 return redirect()->back()->with(['error' => 'Thất bại,sai email hoặc mật khẩu'])->withInput();
             }
         } catch (\Exception $e) {
-            return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra'])->withInput();
+            return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau'])->withInput();
         }
     }
 
@@ -64,10 +64,10 @@ class authApplicantService
             if ($applicant) {
                 return redirect()->back()->with(['success' => 'Đăng ký thành công']);
             } else {
-                return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra'])->withInput();
+                return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau'])->withInput();
             }
         } catch (\Exception $e) {
-            return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra'])->withInput();
+            return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau'])->withInput();
         }
     }
 }
