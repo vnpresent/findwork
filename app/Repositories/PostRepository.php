@@ -18,6 +18,11 @@ class PostRepository implements PostRepositoryInterface
         return Post::all()->where('is_pinned', true);
     }
 
+    public function getMyPosts()
+    {
+        return Post::all()->where('employer_id', '=', auth('employer')->user()->id);
+    }
+
     public function searchPosts()
     {
         return Post::all()->where('s', '=', '2');

@@ -15,7 +15,16 @@ class CreateCvsTable extends Migration
     {
         Schema::create('cvs', function (Blueprint $table) {
             $table->id();
-            $table->json('language');
+            $table->text('image');
+            $table->string('name');
+            $table->date('birthday');
+            $table->text('address');
+            $table->text('email');
+            $table->text('phone');
+            $table->json('literacy');
+            $table->json('work_experience');
+            $table->json('skill');
+            $table->json('activities');
             $table->timestamps();
         });
     }
