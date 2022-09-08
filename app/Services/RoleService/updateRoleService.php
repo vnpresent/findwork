@@ -3,9 +3,12 @@
 namespace App\Services\RoleService;
 
 use App\Interfaces\RoleRepositoryInterface;
+use App\Traits\CheckExistTrait;
 
 class updateRoleService
 {
+    use CheckExistTrait;
+
     protected $roleRepository;
 
     public function __construct(RoleRepositoryInterface $roleRepository)
@@ -17,11 +20,10 @@ class updateRoleService
     {
         try {
             $role = $this->roleRepository->getRole($id);
-            if (count($role) > 0) {
-
-            } else {
-                return redirect()->back()->with(['error' => 'Không tồn tại role'])->withInput();
+            if ($this->checkExistsRole($role) !== true) {
+                return $this->checkExistsRole($role);
             }
+
         } catch (\Exception $e) {
 
         }
@@ -31,11 +33,10 @@ class updateRoleService
     {
         try {
             $role = $this->roleRepository->getRole($id);
-            if (count($role) > 0) {
-
-            } else {
-                return redirect()->back()->with(['error' => 'Không tồn tại role'])->withInput();
+            if ($this->checkExistsRole($role) !== true) {
+                return $this->checkExistsRole($role);
             }
+
         } catch (\Exception $e) {
 
         }

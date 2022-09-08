@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-trait checkExistsTrait
+trait CheckExistTrait
 {
     private function checkExists($data, $subject)
     {

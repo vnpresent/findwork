@@ -3,12 +3,13 @@
 namespace App\Services\RoleService;
 
 use App\Interfaces\RoleRepositoryInterface;
-use App\Traits\checkExistsTrait;
+use App\Traits\CheckExistTrait;
 
 class deleteRoleService
 {
+    use CheckExistTrait;
+
     protected $roleRepository;
-    use checkExistsTrait;
 
     public function __construct(RoleRepositoryInterface $roleRepository)
     {
