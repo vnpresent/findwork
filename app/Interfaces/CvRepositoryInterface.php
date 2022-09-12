@@ -6,6 +6,8 @@ interface CvRepositoryInterface
 {
     public function getAllCvs();
 
+    public function getCvsOfPost($postId);
+
     public function getApplicantCvs($applicantId);
 
     public function createCv($applicantId);

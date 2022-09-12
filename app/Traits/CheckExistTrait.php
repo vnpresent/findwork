@@ -13,6 +13,16 @@ trait CheckExistTrait
         }
     }
 
+    public function checkExistsApplicant($applicant)
+    {
+        return $this->checkExists($applicant, 'Tài khoản người dùng');
+    }
+
+    public function checkExistsCV($cv)
+    {
+        return $this->checkExists($cv, 'CV');
+    }
+
     public function checkExistsManager($manager)
     {
         return $this->checkExists($manager, 'Tài khoản quản lý');

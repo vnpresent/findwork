@@ -19,10 +19,9 @@ class ApplicantRepository implements ApplicantRepositoryInterface
 
     public function updateApplicant($id, $name, $password)
     {
-        $data = [];
-        if ($name !== null) {
-            $data['name'] = $name;
-        }
+        $data = [
+            'name' => $name
+        ];
         if ($password !== null) {
             $data['password'] = bcrypt($password);
         }
@@ -31,6 +30,6 @@ class ApplicantRepository implements ApplicantRepositoryInterface
 
     public function deleteApplicant($id)
     {
-        return Applicant::delete($id);
+        return Applicant::find($id)->delete;
     }
 }

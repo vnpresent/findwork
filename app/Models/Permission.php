@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use phpDocumentor\Reflection\Types\This;
 
 class Permission extends Model
 {
@@ -16,5 +17,10 @@ class Permission extends Model
     public function getRoles()
     {
         return $this->belongsToMany(Role::class);
+    }
+
+    public function getPermissions()
+    {
+        return $this->belongsToMany(Permission::class, 'permissions', 'parent_id', 'id');
     }
 }

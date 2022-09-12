@@ -45,9 +45,9 @@ class updatePostService
                 return $this->checkExistsPost($post);
             }
             //thành công gọi repository cập nhật,check kết quả trả về sau đó back lại
-            $update = $this->postRepository->updatePost($id, $title, $description, $numberApplicants, $minSalary, $maxSalary, $startDate, $endDate);
-            if ($update) {
-                return redirect()->back()->with(['success' => 'Đã tạo post mới thành công thành công']);
+            $result = $this->postRepository->updatePost($id, $title, $description, $numberApplicants, $minSalary, $maxSalary, $startDate, $endDate);
+            if ($result) {
+                return redirect()->back()->with(['success' => 'Đã cập nhật post thành công']);
             } else {
                 return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau,vui lòng thử lại sau'])->withInput();
             }

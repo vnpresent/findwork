@@ -14,6 +14,16 @@ class CvRepository implements CvRepositoryInterface
         return Cv::all()->toArray();
     }
 
+    public function getCvsOfPost($postId)
+    {
+        return DB::table('cvs')
+            ->whereIn('id', function ($query) use ($postId) {
+                $query->select('cv_id')
+                    ->from('cv_post')
+                    ->where('post_id', '=', $postId);
+            })->get()->toArray();
+    }
+
     public function getApplicantCvs($applicantId)
     {
         return DB::table('cvs')->where('applicant_id', '=', $applicantId)->get()->toArray();

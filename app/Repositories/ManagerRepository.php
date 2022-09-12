@@ -9,7 +9,7 @@ class ManagerRepository implements ManagerRepositoryInterface
 {
     public function getAllManagers()
     {
-        return Manager::with('getRoles')->get();
+        return Manager::with('getRoles')->get()->toArray();
     }
 
     public function createManager($name, $email, $password, $roles)
@@ -25,7 +25,7 @@ class ManagerRepository implements ManagerRepositoryInterface
 
     public function getManager($id)
     {
-        return Manager::find($id);
+        return Manager::find($id)->toArray();
     }
 
     public function getRolesOfManager($id)
@@ -35,10 +35,9 @@ class ManagerRepository implements ManagerRepositoryInterface
 
     public function updateManager($id, $name, $password, $roles)
     {
-        $data = [];
-        if ($name !== null) {
-            $data['name'] = $name;
-        }
+        $data = [
+            'name' => $name
+        ];
         if ($password !== null) {
             $data['password'] = $password;
         }

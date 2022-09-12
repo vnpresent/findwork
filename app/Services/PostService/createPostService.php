@@ -22,7 +22,11 @@ class createPostService
     // trả về form tao mới post
     public function showCreatePostForm()
     {
-        return view('employer.create_post');
+        try {
+            return view('employer.create_post');
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau'])->withInput();
+        }
     }
 
     // xử lý tạo mới post

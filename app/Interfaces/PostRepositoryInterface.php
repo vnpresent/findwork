@@ -6,9 +6,15 @@ interface PostRepositoryInterface
 {
     public function getAllPosts();
 
+    public function getPostsOfEmpolyer($employerId);
+
     public function getPinnedPost();
 
-    public function searchPosts();
+    public function searchPosts($q);
+
+    public function applyPost($id, $cvId);
+
+    public function unapplyPost($id, $cvId);
 
     public function createPost($title, $description, $numberApplicants, $minSalary, $maxSalary, $startDate, $endDate);
 

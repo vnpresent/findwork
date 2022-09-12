@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Cv extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
+
+    public function getPosts()
+    {
+        return $this->belongsToMany(Post::class);
+    }
 }

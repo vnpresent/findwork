@@ -45,6 +45,12 @@ class updateManagerService
             if ($this->checkExistsManager($manager) !== true) {
                 return $this->checkExistsManager($manager);
             }
+            $result = $this->managerRepository->updateManager($id, $name, $password, $roles);
+            if ($result) {
+                return redirect()->back()->with(['success' => 'Đã cập nhật tài khoản quản lý thành công']);
+            } else {
+                return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau,vui lòng thử lại sau'])->withInput();
+            }
         } catch (\Exception $e) {
             return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau'])->withInput();
         }

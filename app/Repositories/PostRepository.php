@@ -14,24 +14,38 @@ class PostRepository implements PostRepositoryInterface
         return Post::all()->toArray();
     }
 
+    public function getPostsOfEmpolyer($employerId)
+    {
+        return DB::table('posts')
+            ->where('employer_id', '=', $employerId)
+            ->get()
+            ->toArray();
+    }
+
     public function getPinnedPost()
     {
         return Post::all()->where('is_pinned', true)->toArray();
     }
 
-    public function getEmployerPosts($employer_id)
+    public function searchPosts($q)
     {
-        return DB::table('posts')->where('; employer_id', '=', $employer_id)->get()->toArray();
+        return Post::all()->where('q', '=', $q);
     }
 
-    public function searchPosts()
+    public function applyPost($id, $cvId)
     {
-        return Post::all()->where('s', '=', '2');
+        return Post::find($id)->getCvs()->attach($cvId);
     }
+
+    public function unapplyPost($id, $cvId)
+    {
+        return Post::find($id)->getCvs()->detach($cvId);
+    }
+
 
     public function createPost($title, $description, $numberApplicants, $minSalary, $maxSalary, $startDate, $endDate)
     {
-        return Post::create([
+        $data = [
             'employer_id' => auth('employer')->user()->id,
             'title' => $title,
             'description' => $description,
@@ -40,7 +54,8 @@ class PostRepository implements PostRepositoryInterface
             'max_salary' => $maxSalary,
             'start_date' => $startDate,
             'end_date' => $endDate,
-        ]);
+        ];
+        return Post::create($data);
     }
 
     public function getPost($id)
@@ -50,8 +65,7 @@ class PostRepository implements PostRepositoryInterface
 
     public function updatePost($id, $title, $description, $numberApplicants, $minSalary, $maxSalary, $startDate, $endDate)
     {
-        $post = Post::find($id);
-        return $post->update([
+        $data = [
             'title' => $title,
             'description' => $description,
             'number_applicants' => $numberApplicants,
@@ -59,7 +73,9 @@ class PostRepository implements PostRepositoryInterface
             'max_salary' => $maxSalary,
             'start_date' => $startDate,
             'end_date' => $endDate,
-        ]);
+        ];
+        $post = Post::find($id);
+        return $post->update($data);
     }
 
     public function deletePost($id)
