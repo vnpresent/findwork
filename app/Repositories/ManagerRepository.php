@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Interfaces\ManagerRepositoryInterface;
 use App\Models\Manager;
+use Illuminate\Support\Facades\DB;
 
 class ManagerRepository implements ManagerRepositoryInterface
 {
@@ -41,9 +42,17 @@ class ManagerRepository implements ManagerRepositoryInterface
         if ($password !== null) {
             $data['password'] = $password;
         }
-        $manager = Manager::find($id);
-        $manager->getRoles()->sync($roles);
-        return $manager->update($data);
+        DB::beginTransaction();
+        try {
+            $manager = Manager::find($id);
+            $manager->getRoles()->sync($roles);
+            $result = $manager->update($data);
+            DB::commit();
+            return $result;
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return false;
+        }
     }
 
     public function deleteManager($id)
