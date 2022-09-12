@@ -16,7 +16,7 @@ class showPostService
         $this->postRepository = $postRepository;
     }
 
-    public function showPost($id)
+    public function showPostForm($id)
     {
         try {
             // gọi repo lấy post với id từ người dùng,kiếm tra tồn tại post,nếu không tồn tại,back lại kèm lỗi không tồn tại post

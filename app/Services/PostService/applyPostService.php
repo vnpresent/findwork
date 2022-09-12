@@ -32,7 +32,7 @@ class applyPostService
             }
             // nếu tồn tại,goi repo lấy cv bằng cvid ,kiểm tra sự tồn tại,back về kèm thông báo lỗi không tồn tại cv
             $cv = $this->cvRepository->getCv($cvId);
-            if ($this->checkExistsCV($cv) !== true) {
+            if ($this->checkExistsCv($cv) !== true) {
                 return $this->checkExistsPost($cv);
             }
             // gọi repo applyPost,kiếm tra kết quả và trả về thông báo tương ứng

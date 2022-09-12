@@ -18,7 +18,7 @@ trait CheckExistTrait
         return $this->checkExists($applicant, 'Tài khoản người dùng');
     }
 
-    public function checkExistsCV($cv)
+    public function checkExistsCv($cv)
     {
         return $this->checkExists($cv, 'CV');
     }

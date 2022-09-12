@@ -32,7 +32,7 @@ class unapplyPostService
             }
             // nếu tồn tại,goi repo lấy cv với cvid người dùng nhập vào,kiểm tra sự tồn tại,back về kèm thông báo lỗi không tồn tại cv
             $cv = $this->cvRepository->getCv($cvId);
-            if ($this->checkExistsCV($cv) !== true) {
+            if ($this->checkExistsCv($cv) !== true) {
                 return $this->checkExistsPost($cv);
             }
             // gọi repo unapplyPost,kiếm tra kết quả và trả về thông báo tương ứng
