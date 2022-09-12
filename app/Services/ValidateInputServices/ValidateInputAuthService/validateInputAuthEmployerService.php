@@ -53,7 +53,7 @@ class validateInputAuthEmployerService
             'password.string' => 'Password phải là chuỗi',
         ]);
         if ($validate->fails()) {
-            return $validate->errors()->first();
+            redirect()->back()->with(['error' => $validate->errors()->first()])->withInput();
         } else {
             return true;
         }

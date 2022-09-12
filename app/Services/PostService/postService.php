@@ -24,7 +24,7 @@ class postService
     // trả về form tao mới post
     public function showCreatePostForm()
     {
-        return view('employer.create_post');
+        return view('post.create_post');
     }
 
     // xử lý tạo mới post
