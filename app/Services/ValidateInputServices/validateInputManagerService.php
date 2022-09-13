@@ -34,7 +34,7 @@ class validateInputManagerService
             'roles[].array' => 'Quyền của quản lý không tồn tại',
         ]);
         if ($validate->fails()) {
-            redirect()->back()->with(['error' => $validate->errors()->first()])->withInput();
+            return redirect()->back()->with(['error' => $validate->errors()->first()])->withInput();
         } else {
             return true;
         }
@@ -67,7 +67,7 @@ class validateInputManagerService
             'roles[].array' => 'Quyền của quản lý không tồn tại',
         ]);
         if ($validate->fails()) {
-            redirect()->back()->with(['error' => $validate->errors()->first()])->withInput();
+            return redirect()->back()->with(['error' => $validate->errors()->first()])->withInput();
         } else {
             return true;
         }

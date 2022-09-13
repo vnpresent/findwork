@@ -26,7 +26,7 @@ class validateInputAuthApplicantService
             'remember.boolean' => 'Remember phải là true false',
         ]);
         if ($validate->fails()) {
-            redirect()->back()->with(['error' => $validate->errors()->first()])->withInput();
+            return redirect()->back()->with(['error' => $validate->errors()->first()])->withInput();
         } else {
             return true;
         }
@@ -53,7 +53,7 @@ class validateInputAuthApplicantService
             'password.string' => 'Password phải là chuỗi',
         ]);
         if ($validate->fails()) {
-            redirect()->back()->with(['error' => $validate->errors()->first()])->withInput();
+            return redirect()->back()->with(['error' => $validate->errors()->first()])->withInput();
         } else {
             return true;
         }

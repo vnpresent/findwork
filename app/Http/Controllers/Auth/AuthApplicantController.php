@@ -22,7 +22,7 @@ class AuthApplicantController extends Controller
 
     public function loginApplicant(Request $request)
     {
-        return $this->authApplicantService->loginApplicant($request->email, $request->password, $request->remember);
+        return $this->authApplicantService->loginApplicant($request->email, $request->password, $request->has('remember'));
     }
 
     public function showRegisterApplicantForm()

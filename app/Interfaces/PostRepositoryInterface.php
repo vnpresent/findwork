@@ -10,7 +10,7 @@ interface PostRepositoryInterface
 
     public function getPinnedPost();
 
-    public function searchPosts($q);
+    public function searchPosts($laws);
 
     public function applyPost($id, $cvId);
 

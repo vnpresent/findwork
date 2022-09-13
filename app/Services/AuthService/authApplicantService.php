@@ -30,7 +30,7 @@ class authApplicantService
             // validate email,password người dùng gửi lên,nếu không thành công back lại kèm lỗi
             $validate = $this->validateInputAuthApplicantService->validateInputLoginApplicant($email, $password, $remember);
             if ($validate !== true) {
-                return redirect()->back()->with(['error' => $validate]);
+                return $validate;
             }
             // nếu validate thành công,xác thực đăng nhập,nếu thành công back về trang chủ,nếu thất lại back lại kèm lỗi sai tài khoản mật khẩu
             $manager = $this->authApplicantRepository->loginApplicant($email, $password, $remember);
@@ -57,7 +57,7 @@ class authApplicantService
             $validate = $this->validateInputAuthApplicantService->validateInputRegisterApplicant($name, $email, $password);
             // kiểm tra xem có validate thành công không,nếu không thành công back lại kèm lỗi và input cũ
             if ($validate !== true) {
-                return redirect()->back()->with(['error' => $validate])->withInput();
+                return $validate;
             }
             // thành công tạo mới applicant và back lại kèm thông báo đăng ký thành công
             $applicant = $this->authApplicantRepository->registerApplicant($name, $email, $password);

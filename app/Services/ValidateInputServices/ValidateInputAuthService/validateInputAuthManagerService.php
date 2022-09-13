@@ -26,7 +26,7 @@ class validateInputAuthManagerService
             'remember.boolean' => 'Remember phải là true false',
         ]);
         if ($validate->fails()) {
-            redirect()->back()->with(['error' => $validate->errors()->first()])->withInput();
+            return redirect()->back()->with(['error' => $validate->errors()->first()])->withInput();
         } else {
             return true;
         }

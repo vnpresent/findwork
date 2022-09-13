@@ -12,6 +12,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->bigInteger('employer_id')->unsigned();
             $table->string('title');
+            $table->json('levels');
             $table->longText('description');
             $table->integer('number_applicants');
             $table->integer('min_salary');
@@ -20,6 +21,7 @@ class CreatePostsTable extends Migration
             $table->date('end_date');
             $table->boolean('is_pinned')->default(false);
             $table->foreign('employer_id')->references('id')->on('employers');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

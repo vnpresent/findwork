@@ -46,7 +46,7 @@ class validateInputPostService
             'end_date.after' => 'Ngày kết thúc tuyển phải sau ngày bắt đầu',
         ]);
         if ($validate->fails()) {
-            redirect()->back()->with(['error' => $validate->errors()->first()])->withInput();
+            return redirect()->back()->with(['error' => $validate->errors()->first()])->withInput();
         } else {
             return true;
         }

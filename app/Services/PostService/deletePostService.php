@@ -19,6 +19,7 @@ class deletePostService
     public function deletePost($id)
     {
         try {
+            // gọi repo lấy post,kiểm tra tồn tại của post,nếu post không tồn tại,back lại kèm lỗi
             $post = $this->postRepository->getPost($id);
             if ($this->checkExistsPost($post) !== true) {
                 return $this->checkExistsPost($post);

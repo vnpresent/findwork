@@ -5,6 +5,7 @@ namespace App\Repositories;
 
 use App\Interfaces\PostRepositoryInterface;
 use App\Models\Post;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 
 class PostRepository implements PostRepositoryInterface
@@ -24,12 +25,16 @@ class PostRepository implements PostRepositoryInterface
 
     public function getPinnedPost()
     {
-        return Post::all()->where('is_pinned', true)->toArray();
+        return Post::all()->where('is_pinned', '=', true)->toArray();
     }
 
-    public function searchPosts($q)
+    public function searchPosts($laws)
     {
-        return Post::all()->where('q', '=', $q);
+        return Post::all()->where(function ($query) use ($laws) {
+            foreach ($laws as $key => $value) {
+                $query->where($key, 'like', $value);
+            }
+        })->get()->toArray();
     }
 
     public function applyPost($id, $cvId)
