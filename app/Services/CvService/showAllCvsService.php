@@ -2,8 +2,7 @@
 
 namespace App\Services\CvService;
 
-use App\Interfaces\CvRepositoryInterface;
-use App\Interfaces\PostRepositoryInterface;
+use App\Repositories\Cv\CvRepositoryInterface;
 
 class showAllCvsService
 {

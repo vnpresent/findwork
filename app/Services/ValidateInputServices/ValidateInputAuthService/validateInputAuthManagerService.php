@@ -16,13 +16,12 @@ class validateInputAuthManagerService
         $validate = Validator::make($data, [
             'email' => 'required|email',
             'password' => 'required|string',
-            'remember' => 'required|boolean',
+            'remember' => 'nullable|boolean',
         ], [
             'email.required' => 'Email không được để trống',
             'email.email' => 'Email không đúng định dạng',
             'password.required' => 'Password không được để trống',
             'password.string' => 'Password phải là chuỗi',
-            'remember.required' => 'Remember không được để trống',
             'remember.boolean' => 'Remember phải là true false',
         ]);
         if ($validate->fails()) {

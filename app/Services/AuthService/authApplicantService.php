@@ -2,20 +2,23 @@
 
 namespace App\Services\AuthService;
 
-use App\Interfaces\Auth\AuthApplicantRepositoryInterface;
+use App\Repositories\Applicant\ApplicantRepositoryInterface;
+use App\Repositories\Auth\AuthApplicantRepositoryInterface;
 use App\Services\ValidateInputServices\ValidateInputAuthService\validateInputAuthApplicantService;
-use App\Services\ValidateInputServices\ValidateInputAuthService\validateInputAuthEmployerService;
+use Illuminate\Support\Facades\Hash;
 
 class authApplicantService
 {
     protected $validateInputAuthApplicantService;
     protected $authApplicantRepository;
+    protected $applicantRepository;
 
     // khai báo các service,repository được dùng
-    public function __construct(validateInputAuthApplicantService $validateInputAuthApplicantService, AuthApplicantRepositoryInterface $authApplicantRepository)
+    public function __construct(validateInputAuthApplicantService $validateInputAuthApplicantService, AuthApplicantRepositoryInterface $authApplicantRepository, ApplicantRepositoryInterface $applicantRepository)
     {
         $this->validateInputAuthApplicantService = $validateInputAuthApplicantService;
         $this->authApplicantRepository = $authApplicantRepository;
+        $this->applicantRepository = $applicantRepository;
     }
 
     public function showLoginApplicantForm()
@@ -69,5 +72,43 @@ class authApplicantService
         } catch (\Exception $e) {
             return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau'])->withInput();
         }
+    }
+
+    public function showUpdateProfileForm()
+    {
+        return view('auth.applicant.update_profile');
+    }
+
+    public function updateProfile($name, $phone, $birthday, $address, $password, $new_password, $new_password1)
+    {
+//        try {
+        $data = [];
+        if ($password != null) {
+            if (Hash::check($password, auth('applicant')->user()->password)) {
+                if ($new_password != $new_password1) {
+                    $new_password = null;
+                    $data['error'] = 'Mật khẩu nhập lại sai';
+                }
+            } else {
+                $new_password = null;
+                $data['error'] = 'Mật khẩu cũ sai';
+            }
+        }
+        $id = auth('applicant')->user()->id;
+        if ($this->applicantRepository->updateApplicant($id, $name, $phone, $birthday, $address, $new_password)) {
+            $data['success'] = 'Cập nhật thành công';
+            return redirect()->back()->with($data);
+        } else {
+            return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau'])->withInput();
+        }
+//        } catch (\Exception $e) {
+//            return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau'])->withInput();
+//        }
+    }
+
+    public function logout()
+    {
+        auth('applicant')->logout();
+        return redirect()->route('index');
     }
 }

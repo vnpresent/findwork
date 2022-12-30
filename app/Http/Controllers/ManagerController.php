@@ -2,40 +2,55 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\ManagerService\managerService;
+use App\Services\CvService\createCvService;
+use App\Services\ManagerService\createManagerService;
+use App\Services\ManagerService\deleteManagerService;
+use App\Services\ManagerService\showAllManagersService;
+use App\Services\ManagerService\updateManagerService;
 use Illuminate\Http\Request;
 
 class ManagerController extends Controller
 {
-    protected $managerService;
+    protected $createManagerService;
+    protected $showAllManagersService;
+    protected $deleteManagerService;
+    protected $updateManagerService;
 
-    public function __construct(managerService $managerService)
+    public function __construct(createManagerService $createManagerService, showAllManagersService $showAllManagersService, deleteManagerService $deleteManagerService, updateManagerService $updateManagerService)
     {
-        $this->managerService = $managerService;
+        $this->createManagerService = $createManagerService;
+        $this->showAllManagersService = $showAllManagersService;
+        $this->deleteManagerService = $deleteManagerService;
+        $this->updateManagerService = $updateManagerService;
     }
 
-    public function showAllManagers()
+    public function showAllManagersForm()
     {
-        return $this->managerService->showAllManagers();
+        return $this->showAllManagersService->showAllManagersForm();
     }
 
-    public function showCreateManageForm()
+    public function showCreateManagerForm()
     {
-        return $this->managerService->showCreateManageForm();
+        return $this->createManagerService->showCreateManagerForm();
     }
 
-    public function createManage(Request $request)
+    public function createManager(Request $request)
     {
-        return $this->managerService->createManage($request->name, $request->email, $request->password);
+        return $this->createManagerService->createManager($request->name, $request->email, $request->password, $request->roles);
     }
 
     public function showUpdateManagerForm($id)
     {
-        return $this->managerService->showUpdateManagerForm($id);
+        return $this->updateManagerService->showUpdateManagerForm($id);
     }
 
-    public function updateManager(Request $request)
+    public function updateManager(Request $request, $id)
     {
+        return $this->updateManagerService->updateManager($id, $request->name, $request->roles);
+    }
 
+    public function deleteManager(Request $request)
+    {
+        return $this->deleteManagerService->deleteManager($request->id);
     }
 }

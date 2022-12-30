@@ -2,7 +2,6 @@
 
 namespace App\Repositories\Auth;
 
-use App\Interfaces\Auth\AuthEmployerRepositoryInterface;
 use App\Models\Employer;
 
 class AuthEmployerRepository implements AuthEmployerRepositoryInterface

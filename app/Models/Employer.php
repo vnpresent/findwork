@@ -8,10 +8,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Employer extends Authenticatable
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'balance', 'avatar', 'description', 'address'
     ];
 
     protected $hidden = [
@@ -20,6 +20,16 @@ class Employer extends Authenticatable
 
     public function getPosts()
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Post::class)->withTimestamps();
+    }
+
+//    public function getCvs()
+//    {
+//        return $this->belongsTo(Cv::class)->withTimestamps();
+//    }
+
+    public function getCvs()
+    {
+        return $this->belongsToMany(Cv::class)->orderBy('cv_employer.created_at','desc')->withTimestamps();
     }
 }

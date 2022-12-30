@@ -16,17 +16,17 @@ class CreateCvsTable extends Migration
         Schema::create('cvs', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('applicant_id')->unsigned();
-            $table->text('image');
             $table->string('name');
-            $table->date('birthday');
-            $table->text('address');
-            $table->text('email');
-            $table->text('phone');
-            $table->json('literacy');
-            $table->json('work_experience');
-            $table->json('skill');
-            $table->json('activities');
+            $table->string('position');
+            $table->json('profile');
+            $table->string('objective')->nullable();
+//            $table->json('skills')->nullable();
+            $table->json('work_experience')->nullable();
+            $table->json('education')->nullable();
+            $table->json('activities')->nullable();
+            $table->json('certifications')->nullable();
             $table->foreign('applicant_id')->references('id')->on('applicants');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

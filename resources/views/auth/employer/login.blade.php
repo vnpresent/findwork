@@ -3,6 +3,7 @@
     <title>Login | FindWork</title>
 @endpush
 @push('css')
+    <link rel="icon" href="{{ asset('image/icon.png') }}" sizes="32x32" type="image/png">
     <link rel="stylesheet" href="{{ asset('css/auth/employer/login.css') }}">
     <link rel="stylesheet" href="{{ asset('css/auth/employer/owl.carousel.min.css') }}">
 @endpush
@@ -41,10 +42,18 @@
                                         <input type="checkbox" checked="checked"/>
                                         <div class="control__indicator"></div>
                                     </label>
-                                    <span class="ml-auto"><a href="#" class="forgot-pass">Quên mật khẩu</a></span>
+                                    <span class="ml-auto"><a href="{{ route('employer.register') }}" class="forgot-pass">Đăng Ký</a></span>
                                 </div>
 
                                 <input type="submit" value="Log In" class="btn btn-block btn-primary">
+                                @if(session('error'))
+                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                        {{ session('error') }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                @endif
                             </form>
                         </div>
                     </div>

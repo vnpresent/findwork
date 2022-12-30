@@ -2,7 +2,7 @@
 
 namespace App\Services\ManagerService;
 
-use App\Interfaces\ManagerRepositoryInterface;
+use App\Repositories\Manager\ManagerRepositoryInterface;
 
 class showAllManagersService
 {
@@ -13,11 +13,11 @@ class showAllManagersService
         $this->managerRepository = $managerRepository;
     }
 
-    public function showAllManagers()
+    public function showAllManagersForm()
     {
         try {
             $managers = $this->managerRepository->getAllManagers();
-            return view('manager.all_manager', ['managers' => $managers]);
+            return view('manager.show_all_managers', ['managers' => $managers]);
         } catch (\Exception $e) {
             return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau'])->withInput();
         }

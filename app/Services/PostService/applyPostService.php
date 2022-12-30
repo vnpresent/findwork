@@ -2,8 +2,8 @@
 
 namespace App\Services\PostService;
 
-use App\Interfaces\CvRepositoryInterface;
-use App\Interfaces\PostRepositoryInterface;
+use App\Repositories\Cv\CvRepositoryInterface;
+use App\Repositories\Post\PostRepositoryInterface;
 use App\Services\ValidateInputServices\validateInputPostService;
 use App\Traits\CheckExistTrait;
 
@@ -24,7 +24,7 @@ class applyPostService
 
     public function applyPost($id, $cvId)
     {
-        try {
+//        try {
             // gọi repo lấy post bằng id ,sau đó kiểm tra tồn tại post,nếu không tồn tại,back về kèm thông báo lỗi không tồn tại post
             $post = $this->postRepository->getPost($id);
             if ($this->checkExistsPost($post) !== true) {
@@ -36,14 +36,13 @@ class applyPostService
                 return $this->checkExistsPost($cv);
             }
             // gọi repo applyPost,kiếm tra kết quả và trả về thông báo tương ứng
-            $result = $this->postRepository->applyPost($id, $cvId);
-            if ($result) {
+            if ($this->postRepository->applyPost($id, $cvId)) {
                 return redirect()->back()->with(['success' => 'Đã ứng tuyển thành công']);
             } else {
                 return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau,vui lòng thử lại sau'])->withInput();
             }
-        } catch (\Exception $e) {
-            return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau,vui lòng thử lại sau'])->withInput();
-        }
+//        } catch (\Exception $e) {
+//            return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau,vui lòng thử lại sau'])->withInput();
+//        }
     }
 }

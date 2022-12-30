@@ -3,7 +3,7 @@
 namespace App\Services\ApplicantService;
 
 
-use App\Interfaces\ApplicantRepositoryInterface;
+use App\Repositories\Applicant\ApplicantRepositoryInterface;
 use App\Traits\CheckExistTrait;
 
 class updateApplicantService

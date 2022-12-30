@@ -15,7 +15,7 @@ trait CheckExistTrait
 
     public function checkExistsApplicant($applicant)
     {
-        return $this->checkExists($applicant, 'Tài khoản người dùng');
+        return $this->checkExists($applicant, 'Tài khoản Người Dùng');
     }
 
     public function checkExistsCv($cv)
@@ -25,7 +25,12 @@ trait CheckExistTrait
 
     public function checkExistsManager($manager)
     {
-        return $this->checkExists($manager, 'Tài khoản quản lý');
+        return $this->checkExists($manager, 'Tài khoản Quản Lý');
+    }
+
+    public function checkExistsEmployer($employer)
+    {
+        return $this->checkExists($employer, 'Tài khoản Nhà Tuyển Dụng');
     }
 
     public function checkExistsPost($post)

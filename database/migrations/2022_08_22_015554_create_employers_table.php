@@ -17,6 +17,9 @@ class CreateEmployersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('avatar')->default('image/default-avatar.jpg');
+            $table->text('description')->default('Giới Thiệu Về Công Ty');
+            $table->text('address')->default('Địa Chỉ Cụ Thể Của Công Ty');
             $table->integer('balance')->default(0);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

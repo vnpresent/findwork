@@ -1,8 +1,9 @@
 @extends('layouts.master')
 @push('title')
-    <title>Login | FindWork</title>
+    <title>Register | FindWork</title>
 @endpush
 @push('css')
+    <link rel="icon" href="{{ asset('image/icon.png') }}" sizes="32x32" type="image/png">
     <link rel="stylesheet" href="{{ asset('css/auth/employer/login.css') }}">
     <link rel="stylesheet" href="{{ asset('css/auth/employer/owl.carousel.min.css') }}">
 @endpush
@@ -39,9 +40,31 @@
                                            class="form-control"/>
                                     <label class="form-label" for="form2Example22">Password</label>
                                 </div>
+                                <div class="d-flex mb-1 align-items-center">
+                                    <span class="ml-auto"><a href="{{ route('employer.login') }}" class="forgot-pass">Đăng Nhập</a></span>
+                                </div>
 
                                 <input type="submit" value="Đăng ký" class="btn btn-block btn-primary">
-
+                                @if(session('success'))
+                                    <div class="alert alert-success alert-dismissible fade show"
+                                         role="alert">
+                                        {{ session('success') }}
+                                        <button type="button" class="close" data-dismiss="alert"
+                                                aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                @endif
+                                @if(session('error'))
+                                    <div class="alert alert-warning alert-dismissible fade show"
+                                         role="alert">
+                                        {{ session('error') }}
+                                        <button type="button" class="close" data-dismiss="alert"
+                                                aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                @endif
                             </form>
                         </div>
                     </div>

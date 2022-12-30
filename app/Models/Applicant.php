@@ -18,7 +18,7 @@ class Applicant extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'phone', 'birthday', 'address'
     ];
 
     /**
@@ -41,6 +41,6 @@ class Applicant extends Authenticatable
 
     public function getCvs()
     {
-        return $this->hasMany(Cv::class);
+        return $this->hasMany(Cv::class)->withTimestamps();
     }
 }

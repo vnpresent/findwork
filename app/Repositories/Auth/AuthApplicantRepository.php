@@ -2,7 +2,6 @@
 
 namespace App\Repositories\Auth;
 
-use App\Interfaces\Auth\AuthApplicantRepositoryInterface;
 use App\Models\Applicant;
 
 class AuthApplicantRepository implements AuthApplicantRepositoryInterface

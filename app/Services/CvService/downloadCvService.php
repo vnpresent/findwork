@@ -2,8 +2,7 @@
 
 namespace App\Services\CvService;
 
-use App\Interfaces\CvRepositoryInterface;
-use App\Interfaces\PostRepositoryInterface;
+use App\Repositories\Cv\CvRepositoryInterface;
 use App\Traits\CheckExistTrait;
 
 class downloadCvService
@@ -11,27 +10,31 @@ class downloadCvService
     use CheckExistTrait;
 
     protected $cvRepository;
+    protected $checkCvService;
 
-    public function __construct(CvRepositoryInterface $cvRepository)
+    public function __construct(CvRepositoryInterface $cvRepository, checkCvService $checkCvService)
     {
         $this->cvRepository = $cvRepository;
+        $this->checkCvService = $checkCvService;
     }
 
     public function downloadCv($id)
     {
-        try {
-            $cv = $this->cvRepository->getCv($id);
-            if ($this->checkExistsCv($cv) !== true) {
-                return $this->checkExistsCv($cv);
-            }
-//            $result = $this->cvRepository->deleteCv($id);
-//            if ($result) {
-//                return redirect()->back()->with(['success' => 'Đã xóa CV thành công thành công']);
-//            } else {
-//                return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau'])->withInput();
-//            }
-        } catch (\Exception $e) {
-            return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau'])->withInput();
+//        try {
+        $cv = $this->cvRepository->getCv($id);
+        if ($this->checkExistsCv($cv) !== true) {
+            return $this->checkExistsCv($cv);
         }
+        if (!$this->checkCvService->checkCv($id)) {
+            $cv['profile']['phone'] = '************';
+            $cv['profile']['email'] = '************';
+        }
+        $pdf = \Pdf::loadView('cv.pdf', ['cv' => $cv]);;
+        return $pdf->download($cv['name'] . '.pdf');
+//        return $pdf->download($cv['name'] . '.pdf');
+
+//        } catch (\Exception $e) {
+//            return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau'])->withInput();
+//        }
     }
 }

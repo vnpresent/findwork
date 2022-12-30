@@ -2,10 +2,12 @@
 
 namespace App\Services\PostService;
 
-use App\Interfaces\PostRepositoryInterface;
+use App\Repositories\Post\PostRepositoryInterface;
+use App\Traits\GetStatusTrait;
 
 class showAllPostsService
 {
+    use GetStatusTrait;
     protected $postRepository;
 
     public function __construct(PostRepositoryInterface $postRepository)
@@ -15,11 +17,11 @@ class showAllPostsService
 
     public function showAllPostsForm()
     {
-        try {
+//        try {
             $posts = $this->postRepository->getAllPosts();
-            return view('post.show_all_post', ['posts' => $posts]);
-        } catch (\Exception $e) {
-            return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau'])->withInput();
-        }
+            return view('post.show_all_posts', ['posts' => $posts]);
+//        } catch (\Exception $e) {
+//            return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau'])->withInput();
+//        }
     }
 }

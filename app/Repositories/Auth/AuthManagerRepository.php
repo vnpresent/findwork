@@ -2,7 +2,6 @@
 
 namespace App\Repositories\Auth;
 
-use App\Interfaces\Auth\AuthManagerRepositoryInterface;
 use App\Models\Manager;
 
 class AuthManagerRepository implements AuthManagerRepositoryInterface

@@ -1,8 +1,9 @@
 @extends('layouts.master')
 @push('title')
-    <title>Login | FindWork</title>
+    <title>Đăng nhập | FindWork</title>
 @endpush
 @push('css')
+    <link rel="icon" href="{{ asset('image/icon.png') }}" sizes="32x32" type="image/png">
     <link rel="stylesheet" href="{{ asset('css/auth/applicant/login.css') }}">
 @endpush
 @section('content')
@@ -16,9 +17,9 @@
                                 <div class="card-body p-md-5 mx-md-4">
 
                                     <div class="text-center">
-                                        {{--                                        <img--}}
-                                        {{--                                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"--}}
-                                        {{--                                            style="width: 185px;" alt="logo">--}}
+                                        <img
+                                            src="{{ asset('image/icon.png') }}"
+                                            style="width: 185px;" alt="logo">
                                         <h4 class="mt-1 mb-5 pb-1">Đăng nhập vào FindWork</h4>
                                     </div>
 
@@ -49,13 +50,23 @@
                                                     type="submit">Đăng nhập
                                             </button>
                                             @if(session('success'))
-                                                <div class="alert alert-success" role="alert">
+                                                <div class="alert alert-success alert-dismissible fade show"
+                                                     role="alert">
                                                     {{ session('success') }}
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                            aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
                                                 </div>
                                             @endif
                                             @if(session('error'))
-                                                <div class="alert alert-danger" role="alert">
+                                                <div class="alert alert-warning alert-dismissible fade show"
+                                                     role="alert">
                                                     {{ session('error') }}
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                            aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
                                                 </div>
                                             @endif
                                             <a class="text-muted" href="#!">Quên mật khẩu?</a>

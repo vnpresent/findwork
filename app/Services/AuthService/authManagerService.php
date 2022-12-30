@@ -26,11 +26,17 @@ class authManagerService
         if ($validate !== true) {
             return redirect()->back()->with(['error' => $validate]);
         }
-        $manager = auth('manager')->attempt(['email' => $email, 'password' => $password]);
+        $manager = auth('manager')->attempt(['email' => $email, 'password' => $password],$remember);
         if ($manager) {
             return redirect()->route('manager.dashboard');
         } else {
             return redirect()->back()->with(['error' => 'Sai tài khoản hoặc mật khẩu']);
         }
+    }
+
+    public function logout()
+    {
+        auth('manager')->logout();
+        return redirect()->route('index');
     }
 }

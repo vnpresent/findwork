@@ -20,5 +20,23 @@ class RoleSeeder extends Seeder
         ]);
         $permissions = Permission::where('parent_id','!=','0')->pluck('id')->toArray();
         $role->getPermissions()->sync($permissions);
+
+        $role = Role::create([
+            'name'=>'Bài đăng'
+        ]);
+        $permissions = Permission::where('parent_id','!=','0')->pluck('id')->toArray();
+        $role->getPermissions()->sync($permissions);
+
+        $role = Role::create([
+            'name'=>'Nhà tuyển dụng'
+        ]);
+        $permissions = Permission::where('parent_id','!=','0')->pluck('id')->toArray();
+        $role->getPermissions()->sync($permissions);
+
+        $role = Role::create([
+            'name'=>'Phiếu nạp'
+        ]);
+        $permissions = Permission::where('parent_id','!=','0')->pluck('id')->toArray();
+        $role->getPermissions()->sync($permissions);
     }
 }

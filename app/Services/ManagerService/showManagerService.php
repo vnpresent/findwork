@@ -2,7 +2,7 @@
 
 namespace App\Services\ManagerService;
 
-use App\Interfaces\ManagerRepositoryInterface;
+use App\Repositories\Manager\ManagerRepositoryInterface;
 use App\Traits\CheckExistTrait;
 
 class showManagerService

@@ -16,8 +16,11 @@ class CreateApplicantsTable extends Migration
         Schema::create('applicants', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->date('birthday')->default(now());
+            $table->string('phone')->default('');
+            $table->text('address')->default('');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+//            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->softDeletes();

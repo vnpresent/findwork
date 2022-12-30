@@ -2,10 +2,7 @@
 
 namespace App\Services\ManagerService;
 
-use App\Interfaces\ManagerRepositoryInterface;
-use App\Models\Manager;
-use App\Services\ValidateInputServices\ValidateInputAuthService\validateInputAuthManagerService;
-use App\Services\ValidateInputServices\validateInputManagerService;
+use App\Repositories\Manager\ManagerRepositoryInterface;
 use App\Traits\CheckExistTrait;
 
 class deleteManagerService
@@ -26,8 +23,7 @@ class deleteManagerService
             if ($this->checkExistsManager($manager) !== true) {
                 return $this->checkExistsManager($manager);
             }
-            $result = $this->managerRepository->deleteManager($id);
-            if ($result) {
+            if ($this->managerRepository->deleteManager($id)) {
                 return redirect()->back()->with(['success' => 'Đã xóa tài khoản quản lý thành công thành công']);
             } else {
                 return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau'])->withInput();

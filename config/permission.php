@@ -10,8 +10,11 @@ return [
     ],
     'models' => [
         'employer',
+        'applicant',
         'manager',
         'role',
-        'applicant',
+        'post',
+        'cv',
+        'payment',
     ],
 ];

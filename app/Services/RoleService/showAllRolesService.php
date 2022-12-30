@@ -2,7 +2,7 @@
 
 namespace App\Services\RoleService;
 
-use App\Interfaces\RoleRepositoryInterface;
+use App\Repositories\Role\RoleRepositoryInterface;
 
 class showAllRolesService
 {

@@ -2,7 +2,8 @@
 
 namespace App\Services\RoleService;
 
-use App\Interfaces\RoleRepositoryInterface;
+use App\Repositories\Permission\PermissionRepositoryInterface;
+use App\Repositories\Role\RoleRepositoryInterface;
 use App\Services\ValidateInputServices\validateInputRoleService;
 use App\Traits\CheckExistTrait;
 
@@ -12,11 +13,13 @@ class updateRoleService
 
     protected $validateInputRoleService;
     protected $roleRepository;
+    protected $permissionRepository;
 
-    public function __construct(validateInputRoleService $validateInputRoleService, RoleRepositoryInterface $roleRepository)
+    public function __construct(validateInputRoleService $validateInputRoleService, RoleRepositoryInterface $roleRepository, PermissionRepositoryInterface $permissionRepository)
     {
         $this->validateInputRoleService = $validateInputRoleService;
         $this->roleRepository = $roleRepository;
+        $this->permissionRepository = $permissionRepository;
     }
 
     public function showUpdateRoleForm($id)
@@ -24,11 +27,12 @@ class updateRoleService
         try {
             // gọi repo lấy role và kiểm tra role có tồn tại không,nếu không back lại kèm thông báo không tồn tại role
             $role = $this->roleRepository->getRole($id);
+            $permissions = $this->permissionRepository->getAllPermissions();
             if ($this->checkExistsRole($role) !== true) {
                 return $this->checkExistsRole($role);
             }
             // nếu tồn tại role,trả về view lèm bản ghi role vừa lấy được
-            return view('role.update_role', ['role' => $role]);
+            return view('role.update_role', ['role' => $role, 'permissions' => $permissions]);
         } catch (\Exception $e) {
             return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau']);
         }

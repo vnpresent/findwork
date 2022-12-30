@@ -2,9 +2,9 @@
 
 namespace App\Services\CvService;
 
-use App\Interfaces\CvRepositoryInterface;
-use App\Interfaces\PostRepositoryInterface;
+use App\Repositories\Cv\CvRepositoryInterface;
 use App\Traits\CheckExistTrait;
+use Illuminate\Support\Facades\Gate;
 
 class deleteCvService
 {
@@ -24,11 +24,14 @@ class deleteCvService
             if ($this->checkExistsCv($cv) !== true) {
                 return $this->checkExistsCv($cv);
             }
-            $result = $this->cvRepository->deleteCv($id);
-            if ($result) {
-                return redirect()->back()->with(['success' => 'Đã xóa CV thành công thành công']);
+            if (Gate::allows('delete-cvs' ,$id)) {
+                if ($this->cvRepository->deleteCv($id)) {
+                    return redirect()->back()->with(['success' => 'Đã xóa CV thành công thành công']);
+                } else {
+                    return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau'])->withInput();
+                }
             } else {
-                return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau'])->withInput();
+                return redirect()->back()->with(['error' => 'Không có quyền'])->withInput();
             }
         } catch (\Exception $e) {
             return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau'])->withInput();

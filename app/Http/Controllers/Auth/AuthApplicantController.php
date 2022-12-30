@@ -34,4 +34,19 @@ class AuthApplicantController extends Controller
     {
         return $this->authApplicantService->registerApplicant($request->name, $request->email, $request->password);
     }
+
+    public function logout()
+    {
+        return $this->authApplicantService->logout();
+    }
+
+    public function showUpdateProfileForm()
+    {
+        return $this->authApplicantService->showUpdateProfileForm();
+    }
+
+    public function updateProfile(Request $request)
+    {
+        return $this->authApplicantService->updateProfile($request->name, $request->input('phone', ''), $request->birthday, $request->address, $request->password, $request->new_password, $request->new_password1);
+    }
 }

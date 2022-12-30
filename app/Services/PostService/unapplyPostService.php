@@ -2,8 +2,8 @@
 
 namespace App\Services\PostService;
 
-use App\Interfaces\CvRepositoryInterface;
-use App\Interfaces\PostRepositoryInterface;
+use App\Repositories\Cv\CvRepositoryInterface;
+use App\Repositories\Post\PostRepositoryInterface;
 use App\Services\ValidateInputServices\validateInputPostService;
 use App\Traits\CheckExistTrait;
 

@@ -22,6 +22,11 @@ class AuthManagerController extends Controller
 
     public function login(Request $request)
     {
-        return $this->authManagerService->loginManager($request->email, $request->password, $request->remember);
+        return $this->authManagerService->loginManager($request->email, $request->password, $request->has('remember'));
+    }
+
+    public function logout()
+    {
+        return $this->authManagerService->logout();
     }
 }

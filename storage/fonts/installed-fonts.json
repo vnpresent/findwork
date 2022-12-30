@@ -1,0 +1,25 @@
+{
+    "font awesome 5 brands": {
+        "normal": "font_awesome_5_brands_normal_c000152960fbf7161100d4bb4f2ed25d"
+    },
+    "font awesome 5 free": {
+        "normal": "C:\\xampp\\htdocs\\findwork\\storage\\fonts\/font_awesome_5_free_normal_eb78a44353bf08e97153a1219eced4a5",
+        "900": "font_awesome_5_free_900_1bac7822733a5ef101c1ec7f3476eb91"
+    },
+    "source sans pro": {
+        "italic": "source_sans_pro_italic_27672a92dcedb2218abd2dadee4fe950"
+    },
+    "font awesome 6 brands": {
+        "normal": "font_awesome_6_brands_normal_92c45b19798a109fcc8b8f9e249272d8"
+    },
+    "font awesome 6 free": {
+        "normal": "C:\\xampp\\htdocs\\findwork\\storage\\fonts\/font_awesome_6_free_normal_30b57e7665436a6587cd5386a637d3de",
+        "900": "font_awesome_6_free_900_72233ab0c0c82334bfa8594e8b8daca5"
+    },
+    "fontawesome": {
+        "normal": "fontawesome_normal_43761f5746d8c4fa117cda43d0ce99da"
+    },
+    "ionicons": {
+        "normal": "ionicons_normal_1b2b773bb3197b577cecee8d68579952"
+    }
+}

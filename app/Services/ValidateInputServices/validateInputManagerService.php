@@ -18,8 +18,8 @@ class validateInputManagerService
             'name' => 'required|string',
             'email' => 'required|email|unique:managers,email',
             'password' => 'required|string',
-            'roles' => 'required|array',
-            'roles[]' => 'required|exists:roles,id',
+            'roles' => 'nullable|array',
+            'roles[].*' => 'required|exists:roles,id',
         ], [
             'name.required' => 'Tên không được để trống',
             'name.string' => 'Tên phải là chuỗi',
@@ -28,7 +28,6 @@ class validateInputManagerService
             'email.unique' => 'Email đã được sử dụng',
             'password.required' => 'Password không được để trống',
             'password.string' => 'Password phải là chuỗi',
-            'roles.required' => 'Quyền của quản lý không được để trống',
             'roles.array' => 'Quyền của quản lý phải là 1 mảng',
             'roles[].required' => 'Quyền của quản lý không được để trống',
             'roles[].array' => 'Quyền của quản lý không tồn tại',
