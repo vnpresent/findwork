@@ -31,7 +31,7 @@ class checkCvService
                 return true;
             }
             $applies_id = $this->cvRepository->getCvsOfEmployerPosts(auth('employer')->user()->id);
-            if (in_array($id, $applies_id)) {
+            if (in_array($id, array_column($applies_id,'id'))) {
                 return true;
             }
         }

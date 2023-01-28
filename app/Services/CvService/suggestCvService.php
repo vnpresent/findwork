@@ -23,9 +23,15 @@ class suggestCvService
     public function showSuggestCvForm($id)
     {
         $cv = $this->cvRepository->getCv($id);
+        if ($this->checkExistsCv($cv) !== true) {
+            return $this->checkExistsCv($cv);
+        }
+        if ($cv['applicant_id'] != auth('applicant')->user()->id) {
+            return redirect()->back()->with(['error' => 'Bạn không có quyền'])->withInput();
+        }
         $skill_ids = array_column($cv['skills'], 'id');
         $posts = $this->suggestService->suggest($skill_ids);
-        return view('cv.suggest_cv', ['posts' => $posts]);
+        return view('post.suggest_post', ['posts' => $posts]);
 //        try {
 //            return view('cv.create_cv', ['skills' => $skills]);
 //        } catch (\Exception $e) {

@@ -28,8 +28,10 @@ class suggestService
             $work_id = $work['id'];
             $value = 1;
             foreach ($skill_ids as $skill_id) {
-                $data = $this->trainRepository->getValue($skill_id, $work_id)[0]->value;
-                $value = $value * $data;
+                $data = $this->trainRepository->getValue($skill_id, $work_id);
+                if ($data) {
+                    $value = $value * $data[0]->value;
+                }
             }
             $data = $this->trainRepository->getValue(null, $work_id)[0]->value;
             $value = $value * $data;
@@ -38,7 +40,6 @@ class suggestService
                 $max_work_id = $work_id;
             }
         }
-//        dd($max_work_id);
         return $this->postRepository->getPostsByWorkId($max_work_id);
     }
 }

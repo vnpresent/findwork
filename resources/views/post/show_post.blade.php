@@ -111,6 +111,22 @@
                                 <button type="submit" class="btn btn-primary" data-toggle="modal"
                                         data-target="#modalApply" data-id="1">Ứng tuyển
                                 </button>
+                                @if(session('error'))
+                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                        {{ session('error') }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                @endif
+                                @if(session('success'))
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        {{ session('success') }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                @endif
                             </dt>
                         </dl>
                     </div>
@@ -132,7 +148,7 @@
                     <div class="card-body">
                         <dl class="row">
                             <pre class="col-sm-12 font-weight-bold"
-                                 style="">{{ $post['description'] }}</pre>
+                                 style="white-space: pre-wrap;">{{ $post['description'] }}</pre>
                         </dl>
                     </div>
                 </div>
@@ -150,7 +166,8 @@
                     </div>
                     <div class="card-body">
                         <dl class="row">
-                            <pre class="col-sm-12 font-weight-bold">{{ $post['benefit'] }}</pre>
+                            <pre class="col-sm-12 font-weight-bold"
+                                 style="white-space: pre-wrap;">{{ $post['benefit'] }}</pre>
                         </dl>
                     </div>
                 </div>

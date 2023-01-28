@@ -41,10 +41,10 @@ class updateManagerService
     public function updateManager($id, $name, $roles)
     {
         try {
-//            $validate = $this->validateInputManagerService->validateInputUpdateManager($id, $name, $roles);
-//            if ($validate !== true) {
-//                return $validate;
-//            }
+            $validate = $this->validateInputManagerService->validateInputUpdateManager($id, $name, $roles);
+            if ($validate !== true) {
+                return $validate;
+            }
             $manager = $this->managerRepository->getManager($id);
             if ($this->checkExistsManager($manager) !== true) {
                 return $this->checkExistsManager($manager);

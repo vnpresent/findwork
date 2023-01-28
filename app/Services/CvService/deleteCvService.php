@@ -24,7 +24,7 @@ class deleteCvService
             if ($this->checkExistsCv($cv) !== true) {
                 return $this->checkExistsCv($cv);
             }
-            if (Gate::allows('delete-cvs' ,$id)) {
+            if (Gate::allows('delete-cv' ,$id)) {
                 if ($this->cvRepository->deleteCv($id)) {
                     return redirect()->back()->with(['success' => 'Đã xóa CV thành công thành công']);
                 } else {

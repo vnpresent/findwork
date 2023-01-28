@@ -150,9 +150,11 @@ Route::group(['prefix' => 'manager'], function () {
     Route::post('login', [AuthManagerController::class, 'login'])->name('manager.login');
 
     // màn dashboard
-    Route::get('dashboard', [DashboardController::class, 'dashboardManager'])->name('manager.dashboard')->middleware('permission:read_manager');
+    Route::get('dashboard', [DashboardController::class, 'dashboardManager'])->name('manager.dashboard');
 
     Route::get('logout', [AuthManagerController::class, 'showLoginForm'])->name('manager.logout');
+
+//    ->middleware('permission:read_manager')
 });
 
 // xóa bài đăng
@@ -184,8 +186,10 @@ Route::group(['middleware' => 'manager'], function () {
     Route::get('all-employers', [EmployerController::class, 'showAllEmployersForm'])->name('manager.show-all-employers-form');
     // xem nhà tuyển dụng
     Route::get('show-employer/{id}', [EmployerController::class, 'showEmployerForm'])->name('manager.show-employer-form');
-    // xóa nhà tuyển dụng
-    Route::post('delete-employer', [EmployerController::class, 'deleteEmployer'])->name('manager.delete-employer');
+    Route::group(['middleware' => 'permission:delete_employer'], function () {
+        // xóa nhà tuyển dụng
+        Route::post('delete-employer', [EmployerController::class, 'deleteEmployer'])->name('manager.delete-employer');
+    });
 
     // tất cả CV
     Route::get('all-cvs', [CvController::class, 'showAllCvsForm'])->name('manager.show-all-cvs-form');
@@ -196,20 +200,25 @@ Route::group(['middleware' => 'manager'], function () {
     //
     // tất cả phiếu nạp
     Route::get('all-payments', [PaymentController::class, 'showAllPaymentsForm'])->name('manager.show-all-payments-form');
-    // xác nhận phiếu nạp
-    Route::post('confirm-payment', [PaymentController::class, 'confirmPayment'])->name('manager.confirm-payment');
-    // hủy phiếu nạp
-    Route::post('cancel-payment', [PaymentController::class, 'cancelPayment'])->name('manager.cancel-payment');
-    //
+    Route::group(['middleware' => 'permission:update_payment'], function () {
+        // xác nhận phiếu nạp
+        Route::post('confirm-payment', [PaymentController::class, 'confirmPayment'])->name('manager.confirm-payment');
+        // hủy phiếu nạp
+        Route::post('cancel-payment', [PaymentController::class, 'cancelPayment'])->name('manager.cancel-payment');
+    });
+
 
     //
     // Role
     //
     // tất cả vai trò
     Route::get('all-roles', [RoleController::class, 'showAllRolesForm'])->name('manager.show-all-roles-form');
-    // tạo vai trò
-    Route::get('create-role', [RoleController::class, 'showCreateRoleForm'])->name('manager.show-create-role-form');
-    Route::post('create-role', [RoleController::class, 'createRole'])->name('manager.create-role');
+
+    Route::group(['middleware' => 'permission:create_role'], function () {
+        // tạo vai trò
+        Route::get('create-role', [RoleController::class, 'showCreateRoleForm'])->name('manager.show-create-role-form');
+        Route::post('create-role', [RoleController::class, 'createRole'])->name('manager.create-role');
+    });
     // xem vai trò
     Route::get('show-role/{id}', [RoleController::class, 'showRoleForm'])->name('manager.show-roles-form');
     // cập nhật vai trò

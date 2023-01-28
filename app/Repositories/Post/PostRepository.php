@@ -301,7 +301,7 @@ class PostRepository implements PostRepositoryInterface
         ];
         $post = Post::create($data);
         $skill_ids = [];
-        foreach ($skills as $skill) {
+        foreach ((array)$skills as $skill) {
             $skill_ids[] = $this->skillRepository->getIdBySkillName($skill);
         }
         $post->getSkills()->sync($skill_ids);
@@ -439,6 +439,7 @@ class PostRepository implements PostRepositoryInterface
             ->join('working_forms as twf', 'tp.working_form_id', '=', 'twf.id')
             ->join('cities as tc', 'tp.city_id', '=', 'tc.id')
             ->select('tp.id as id', 'tp.title as title',
+                'tp.employer_id as employer_id',
                 'tw.name as work', 'tl.name as level',
                 'te.name as experience', 'td.name as degree', 'twf.name as working_form', 'tp.sex as sex', 'tc.name as city',
                 'tp.address as address', 'tp.min_salary as min_salary', 'tp.max_salary as max_salary',
@@ -454,9 +455,11 @@ class PostRepository implements PostRepositoryInterface
             )
             ->get()
             ->toArray();
-        $posts = array_slice($posts, 0, 10);
+        $posts = array_slice($posts, 0, 9);
         foreach ($posts as $post) {
-            $data[] = (array)$post;
+            $post = (array)$post;
+            $post['avatar'] = $this->employerRepository->getEmployer($post['employer_id'])['avatar'];
+            $data[] = $post;
         }
         return $data;
     }
@@ -484,7 +487,10 @@ class PostRepository implements PostRepositoryInterface
                 if ($city != 1)
                     $query->where('tp.city_id', '=', $city);
             })
-            ->where('tp.level_id', '=', $level)
+            ->where(function ($query) use ($level) {
+                if ($level != 0)
+                    $query->where('tp.level_id', '=', $level);
+            })
             ->join('works as tw', 'tp.work_id', '=', 'tw.id')
             ->join('levels as tl', 'tp.level_id', '=', 'tl.id')
             ->join('experiences as te', 'tp.experience_id', '=', 'te.id')
@@ -513,6 +519,7 @@ class PostRepository implements PostRepositoryInterface
             $post['avatar'] = $this->employerRepository->getEmployer($post['employer_id'])['avatar'];
             $data[] = $post;
         }
+//        dd($posts);
         return $data;
     }
 }

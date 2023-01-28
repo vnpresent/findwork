@@ -173,6 +173,14 @@
                         </ul>
                     </li>
                     @endpermission
+                    <li class="nav-item">
+                        <a href="{{ route('manager.logout') }}" class="nav-link">
+                            <i class="nav-icon fas fa-sign-out-alt"></i>
+                            <p>
+                                Đăng xuất
+                            </p>
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

@@ -1,6 +1,6 @@
-@extends('layouts.master')
+@extends('layouts.applicant')
 @push('title')
-    <title>Login | FindWork</title>
+    Đăng Nhập Nhà Tuyển Dụng | FindWork
 @endpush
 @push('css')
     <link rel="icon" href="{{ asset('image/icon.png') }}" sizes="32x32" type="image/png">

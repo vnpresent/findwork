@@ -34,7 +34,7 @@ class validateInputAuthEmployerService
     public function validateInputRegisterEmployer($name, $email, $password)
     {
         $data = [
-            '_name' => $name,
+            'name' => $name,
             'email' => $email,
             'password' => $password,
         ];

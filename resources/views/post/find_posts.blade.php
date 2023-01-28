@@ -26,6 +26,7 @@
                                 <div class="form-group">
                                     <select class="select2 form-control" data-placeholder="Chọn" name="level"
                                             style="width: 100%;">
+                                        <option @if($level_find == 0) selected @endif value="0">Tất Cả</option>
                                         @foreach($levels as $level)
                                             <option @if($level['id']==$level_find) selected
                                                     @endif value="{{ $level['id'] }}">{{ $level['name'] }}</option>

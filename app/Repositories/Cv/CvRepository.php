@@ -148,8 +148,10 @@ class CvRepository implements CvRepositoryInterface
             'certifications' => $certifications,
         ]);
         foreach ($skills as $skill) {
-            $id = $this->skillRepository->getIdBySkillName($skill['name']);
-            $cv->getSkills()->attach($id, ['description' => $skill['description']]);
+            if ($skill['name']!=null){
+                $id = $this->skillRepository->getIdBySkillName($skill['name']);
+                $cv->getSkills()->attach($id, ['description' => $skill['description']]);
+            }
         }
         return $cv->toArray();
     }

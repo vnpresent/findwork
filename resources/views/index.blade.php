@@ -18,7 +18,7 @@
                                     <div class="input-group input-group">
                                         <input type="text" class="form-control" name="search"
                                                placeholder="Tên công việc, vị trí bạn muốn ứng tuyển ..."
-                                               value="Thực tập sinh">
+                                               value="">
                                     </div>
                                 </div>
                             </div>
@@ -26,6 +26,7 @@
                                 <div class="form-group">
                                     <select class="select2 form-control" data-placeholder="Chọn" name="level"
                                             style="width: 100%;">
+                                        <option value="0">Tất Cả</option>
                                         @foreach($levels as $level)
                                             <option value="{{ $level['id'] }}">{{ $level['name'] }}</option>
                                         @endforeach

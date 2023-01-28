@@ -15,17 +15,17 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(PermissionSeeder::class);
-        $this->call(RoleSeeder::class);
-        $this->call(ManagerSeeder::class);
-        $this->call(WorkSeeder::class);
-        $this->call(LevelSeeder::class);
-        $this->call(ExperienceSeeder::class);
-        $this->call(DegreeSeeder::class);
-        $this->call(WorkingFormSeeder::class);
-        $this->call(CitySeeder::class);
-        $this->call(EmployerSeeder::class);
-        $this->call(ApplicantSeeder::class);
-        $this->call(SkillSeeder::class);
+//        $this->call(RoleSeeder::class);
+//        $this->call(ManagerSeeder::class);
+//        $this->call(WorkSeeder::class);
+//        $this->call(LevelSeeder::class);
+//        $this->call(ExperienceSeeder::class);
+//        $this->call(DegreeSeeder::class);
+//        $this->call(WorkingFormSeeder::class);
+//        $this->call(CitySeeder::class);
+//        $this->call(EmployerSeeder::class);
+//        $this->call(ApplicantSeeder::class);
+//        $this->call(SkillSeeder::class);
 //        $this->call(PostSeeder::class);
 //        $this->call(CVSeeder::class);
 //        $this->call(CVPostSeeder::class);

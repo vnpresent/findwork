@@ -30,22 +30,22 @@
                        placeholder="Vị trí công việc">
             </div>
             <div class="row">
-                <div class="col-6 ">
+                <div class="col-6 pl-5">
                     <section class="work_experience">
-                        <h3>
+                        <h3 class="font-weight-bold">
                             Kinh nghiệm làm việc
                         </h3>
                         @foreach((array)$cv['work_experience'] as $work_experience)
                             <div class="input-item border border-light pl-2">
                                 <div class="form-group row mt-3">
-                                    <input class="form-control-plaintext col-2" type="text"
+                                    <input class="form-control-plaintext col-3" type="text"
                                            name="work_experience[0][position]" disabled
-                                           value="" placeholder="Vị trí">
-                                    <input class="form-control-plaintext col-2" type="text"
+                                           value="{{ $work_experience['position'] }}" placeholder="Vị trí">
+                                    <input class="form-control-plaintext col-3" type="text"
                                            name="work_experience[0][from]"
                                            disabled
                                            value="{{ $work_experience['from'] }}" placeholder="Bắt đầu">
-                                    <input class="form-control-plaintext col-2" type="text"
+                                    <input class="form-control-plaintext col-3" type="text"
                                            name="work_experience[0][end]"
                                            disabled
                                            value="{{ $work_experience['end'] }}" placeholder="Kết thúc">
@@ -67,21 +67,21 @@
 
                     <section class="education">
                         <h3>
-                            <div>Học vấn
+                            <div class="font-weight-bold">Học vấn
                             </div>
                         </h3>
                         @foreach((array)$cv['education'] as $education)
                             <div class="input-item border border-light pl-2">
                                 <div class="form-group row mt-3">
-                                    <input class="form-control-plaintext col-2" type="text" name="education[0][major]"
+                                    <input class="form-control-plaintext col-3" type="text" name="education[0][major]"
                                            disabled
                                            value="{{ $education['major'] }}"
                                            placeholder="Ngành">
-                                    <input class="form-control-plaintext col-2" type="text" name="education[0][from]"
+                                    <input class="form-control-plaintext col-3" type="text" name="education[0][from]"
                                            disabled
                                            value="{{ $education['from'] }}"
                                            placeholder="Bắt đầu">
-                                    <input class="form-control-plaintext col-2" type="text" name="education[0][end]"
+                                    <input class="form-control-plaintext col-3" type="text" name="education[0][end]"
                                            disabled
                                            value={{ $education['end'] }}""
                                            placeholder="Kết thúc">
@@ -103,21 +103,21 @@
 
                     <section class="activities">
                         <h3>
-                            <div>Hoạt động
+                            <div class="font-weight-bold">Hoạt động
                             </div>
                         </h3>
                         @foreach((array)$cv['activities'] as $activitie)
                             <div class="input-item border border-light pl-2">
                                 <div class="form-group row mt-3">
-                                    <input class="form-control-plaintext col-2" type="text"
+                                    <input class="form-control-plaintext col-3" type="text"
                                            name="activities[0][position]"
                                            disabled
                                            value="{{ $activitie['position'] }}" placeholder="Vị trí">
-                                    <input class="form-control-plaintext col-2" type="text" name="activities[0][from]"
+                                    <input class="form-control-plaintext col-3" type="text" name="activities[0][from]"
                                            disabled
                                            value="{{ $activitie['from'] }}"
                                            placeholder="Bắt đầu">
-                                    <input class="form-control-plaintext col-2" type="text" name="activities[0][end]"
+                                    <input class="form-control-plaintext col-3" type="text" name="activities[0][end]"
                                            disabled
                                            value="{{ $activitie['end'] }}"
                                            placeholder="Kết thúc">
@@ -139,13 +139,13 @@
 
                     <section class="certifications">
                         <h3>
-                            <div>Chứng chỉ
+                            <div class="font-weight-bold">Chứng chỉ
                             </div>
                         </h3>
                         @foreach((array)$cv['certifications'] as $certification)
                             <div class="input-item border border-light pl-2">
                                 <div class="form-group row mt-3">
-                                    <input class="form-control-plaintext col-2" type="text"
+                                    <input class="form-control-plaintext col-3" type="text"
                                            name="certifications[0][time]"
                                            disabled
                                            value="{{ $certification['time'] }}" placeholder="Thời gian">
@@ -161,21 +161,21 @@
                         @endforeach
                     </section>
                 </div>
-                <div class="col-6">
+                <div class="col-6 pl-5">
                     <section class="profile">
                         <h3>
-                            <div>Thông tin cá nhân
+                            <div class="font-weight-bold">Thông tin cá nhân
                             </div>
                         </h3>
                         <div class="input-item border border-light pl-2">
-                            <div class="input-group col-5">
+                            <div class="input-group col-7">
                                 <div class="input-group-prepend mr-2">
                                     <span class="form-control-plaintext"><i class="fa fa-user"></i></span>
                                 </div>
                                 <input class="form-control-plaintext" name="profile[name]" type="text" disabled
                                        value="{{ $cv['profile']['name'] }}" placeholder="Tên">
                             </div>
-                            <div class="input-group col-5">
+                            <div class="input-group col-7">
                                 <div class="input-group-prepend mr-2">
                                     <span class="form-control-plaintext"><i class="fa fa-calendar"></i></span>
                                 </div>
@@ -183,7 +183,7 @@
                                        value="{{ $cv['profile']['birthday'] }}">
                             </div>
 
-                            <div class="input-group col-5">
+                            <div class="input-group col-7">
                                 <div class="input-group-prepend mr-2">
                                     <span class="form-control-plaintext"><i class="fa fa-phone"></i></span>
                                 </div>
@@ -193,7 +193,7 @@
                                        name="profile[phone]">
                             </div>
 
-                            <div class="input-group col-5">
+                            <div class="input-group col-7">
                                 <div class="input-group-prepend mr-2">
                                     <span class="form-control-plaintext"><i class="fa fa-mail-bulk"></i></span>
                                 </div>
@@ -203,7 +203,7 @@
                                        name="profile[email]">
                             </div>
 
-                            <div class="input-group col-5">
+                            <div class="input-group col-7">
                                 <div class="input-group-prepend mr-2">
                                     <span class="form-control-plaintext"><i class="fa fa-map-marked-alt"></i></span>
                                 </div>
@@ -218,7 +218,7 @@
 
                     <section class="objective">
                         <h3>
-                            <div>Mục tiêu nghề nghiệp
+                            <div class="font-weight-bold">Mục tiêu nghề nghiệp
                             </div>
                         </h3>
                         <div class="input-item border border-light form-group col-7">

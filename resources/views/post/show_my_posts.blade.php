@@ -25,7 +25,7 @@
         {{--        </div>--}}
         <!-- /.card-header -->
         <div class="card-body">
-            <table id="my_post" class="table table-bordered table-striped">
+            <table id="data-table" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                     <th>Tiêu đề</th>
@@ -186,20 +186,19 @@
     <script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
     <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
     <!-- AdminLTE App -->
-    {{--        <script src="{{ asset('dist/js/adminlte.min.js')}}"></script>--}}
+            <script src="{{ asset('dist/js/adminlte.min.js')}}"></script>
     <script>
         $(function () {
-            $("#my_post").DataTable({
+            $("#data-table").DataTable({
                 "responsive": true, "lengthChange": false, "autoWidth": false,
                 "ordering": false,
-                // "ordering": true,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#my_post .col-md-12:eq(0)');
-            // $('#my_post').DataTable({
+                "buttons": ["copy", "csv", "excel", "pdf", "print",]
+            }).buttons().container().appendTo('#data-table .col-md-6:eq(0)');
+            // $('#data-table').DataTable({
             //     "paging": true,
             //     "lengthChange": false,
-            //     "searching": false,
-            //     "ordering": true,
+            //     "searching": true,
+            //     "ordering": false,
             //     "info": true,
             //     "autoWidth": false,
             //     "responsive": true,

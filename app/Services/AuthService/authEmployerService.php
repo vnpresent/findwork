@@ -57,9 +57,9 @@ class authEmployerService
     {
         try {
             $validate = $this->validateInputAuthService->validateInputRegisterEmployer($name, $email, $password);
-            // if ($validate !== true) {
-            //     return redirect()->back()->with(['error' => $validate])->withInput();
-            // }
+             if ($validate !== true) {
+                 return redirect()->back()->with(['error' => $validate])->withInput();
+             }
             $employer = Employer::create([
                 'name' => $name,
                 'email' => $email,

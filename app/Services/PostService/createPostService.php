@@ -60,22 +60,22 @@ class createPostService
     // xử lý tạo mới post
     public function createPost($title, $work, $level, $experience, $skills, $degree, $workingForm, $sex, $city, $address, $minSalary, $maxSalary, $numberApplicants, $description, $benefit, $endDate)
     {
-//        try {
-        // validate các thông tin employer gửi lên,nếu thất bại,quay trở lại kèm lỗi
-        $validate = $this->validateInputPostService->validateInputCreatePost($title, $work, $level, $experience, $degree, $workingForm, $sex, $city, $address, $minSalary, $maxSalary, $numberApplicants, $description, $benefit, $endDate);
-        if ($validate !== true) {
-            return $validate;
-        }
-        //thành công gọi repository tạo mới,check kết quả trả về sau đó back lại
-        $employerId = auth('employer')->user()->id;
-        $post = $this->postRepository->createPost($employerId, $title, $work, $level, $experience, $skills, $degree, $workingForm, $sex, $city, $address, $minSalary, $maxSalary, $numberApplicants, $description, $benefit, $endDate);
-        if ($this->checkExistsPost($post) === true) {
-            return redirect()->back()->with(['success' => 'Đã tạo post mới thành công thành công']);
-        } else {
+        try {
+            // validate các thông tin employer gửi lên,nếu thất bại,quay trở lại kèm lỗi
+            $validate = $this->validateInputPostService->validateInputCreatePost($title, $work, $level, $experience, $skills, $degree, $workingForm, $sex, $city, $address, $minSalary, $maxSalary, $numberApplicants, $description, $benefit, $endDate);
+            if ($validate !== true) {
+                return $validate;
+            }
+            //thành công gọi repository tạo mới,check kết quả trả về sau đó back lại
+            $employerId = auth('employer')->user()->id;
+            $post = $this->postRepository->createPost($employerId, $title, $work, $level, $experience, $skills, $degree, $workingForm, $sex, $city, $address, $minSalary, $maxSalary, $numberApplicants, $description, $benefit, $endDate);
+            if ($this->checkExistsPost($post) === true) {
+                return redirect()->back()->with(['success' => 'Đã tạo post mới thành công thành công']);
+            } else {
+                return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau'])->withInput();
+            }
+        } catch (\Exception $e) {
             return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau'])->withInput();
         }
-//        } catch (\Exception $e) {
-//            return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau'])->withInput();
-//        }
     }
 }

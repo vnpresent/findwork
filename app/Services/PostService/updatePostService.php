@@ -55,7 +55,9 @@ class updatePostService
             return $this->checkExistsPost($post);
         }
         $post = (array)$post[0];
-//        dd($post);
+        if ($post['employer_id'] != auth('employer')->user()->id) {
+            return redirect()->back()->with(['error' => 'Không có quyền'])->withInput();
+        }
         return view('post.update_post', ['post' => $post, 'skills' => $skills, 'works' => $works, 'levels' => $levels, 'experiences' => $experiences, 'degrees' => $degrees, 'working_forms' => $working_forms, 'cities' => $cities]);
 //        } catch (\Exception $e) {
 //            return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau,vui lòng thử lại sau'])->withInput();
@@ -65,22 +67,26 @@ class updatePostService
     public function updatePost($id, $title, $work, $level, $experience, $skills, $degree, $workingForm, $sex, $city, $address, $minSalary, $maxSalary, $numberApplicants, $description, $benefit, $endDate)
     {
 //        try {
-            // validate các thông tin employer gửi lên,nếu thất bại,quay trở lại kèm lỗi
-            $validate = $this->validateInputPostService->validateInputUpdatePost($title, $work, $level, $experience, $degree, $workingForm, $sex, $city, $address, $minSalary, $maxSalary, $numberApplicants, $description, $benefit, $endDate);
-            if ($validate !== true) {
-                return $validate;
-            }
-            $post = $this->postRepository->getPost($id);
-            if ($this->checkExistsPost($post) !== true) {
-                return $this->checkExistsPost($post);
-            }
-            //thành công gọi repository cập nhật,check kết quả trả về sau đó back lại
-            $result = $this->postRepository->updatePost($id, $title, $work, $level, $experience, $skills, $degree, $workingForm, $sex, $city, $address, $minSalary, $maxSalary, $numberApplicants, $description, $benefit, $endDate);
-            if ($result) {
-                return redirect()->back()->with(['success' => 'Đã cập nhật post thành công']);
-            } else {
-                return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau,vui lòng thử lại sau'])->withInput();
-            }
+        // validate các thông tin employer gửi lên,nếu thất bại,quay trở lại kèm lỗi
+        $validate = $this->validateInputPostService->validateInputUpdatePost($id, $title, $work, $level, $experience, $skills, $degree, $workingForm, $sex, $city, $address, $minSalary, $maxSalary, $numberApplicants, $description, $benefit, $endDate);
+        if ($validate !== true) {
+            return $validate;
+        }
+        $post = $this->postRepository->getPost($id);
+        if ($this->checkExistsPost($post) !== true) {
+            return $this->checkExistsPost($post);
+        }
+        $post = (array)$post[0];
+        if ($post['employer_id'] != auth('employer')->user()->id) {
+            return redirect()->back()->with(['error' => 'Không có quyền'])->withInput();
+        }
+        //thành công gọi repository cập nhật,check kết quả trả về sau đó back lại
+        $result = $this->postRepository->updatePost($id, $title, $work, $level, $experience, $skills, $degree, $workingForm, $sex, $city, $address, $minSalary, $maxSalary, $numberApplicants, $description, $benefit, $endDate);
+        if ($result) {
+            return redirect()->back()->with(['success' => 'Đã cập nhật post thành công']);
+        } else {
+            return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau,vui lòng thử lại sau'])->withInput();
+        }
 //        } catch (\Exception $e) {
 //            return redirect()->back()->with(['error' => 'Thất bại,có lỗi sảy ra,vui lòng thử lại sau,vui lòng thử lại sau'])->withInput();
 //        }

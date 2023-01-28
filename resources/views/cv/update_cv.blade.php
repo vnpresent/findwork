@@ -49,10 +49,10 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-6 ">
+                    <div class="col-6 pl-5">
                         <section class="work_experience">
                             <h3>
-                                <div>Kinh nghiệm làm việc
+                                <div class="font-weight-bold">Kinh nghiệm làm việc
                                 </div>
                             </h3>
                             @if( !$cv['work_experience'])
@@ -63,13 +63,13 @@
                                         <i class="delete fa fa-trash">Xóa</i>
                                     </div>
                                     <div class="form-group row mt-3">
-                                        <input class="form-control-plaintext col-2" type="text"
+                                        <input class="form-control-plaintext col-3" type="text"
                                                name="work_experience[0][position]"
                                                value="" placeholder="Vị trí">
-                                        <input class="form-control-plaintext col-2" type="text"
+                                        <input class="form-control-plaintext col-3" type="text"
                                                name="work_experience[0][from]"
                                                value="" placeholder="Bắt đầu">
-                                        <input class="form-control-plaintext col-2" type="text"
+                                        <input class="form-control-plaintext col-3" type="text"
                                                name="work_experience[0][end]"
                                                value="" placeholder="Kết thúc">
                                     </div>
@@ -93,13 +93,13 @@
                                             <i class="delete fa fa-trash">Xóa</i>
                                         </div>
                                         <div class="form-group row mt-3">
-                                            <input class="form-control-plaintext col-2" type="text"
+                                            <input class="form-control-plaintext col-3" type="text"
                                                    name="work_experience[{{ $loop->index }}][position]"
                                                    value="{{ $work_experience['position'] }}" placeholder="Vị trí">
-                                            <input class="form-control-plaintext col-2" type="text"
+                                            <input class="form-control-plaintext col-3" type="text"
                                                    name="work_experience[{{ $loop->index }}][from]"
                                                    value="{{ $work_experience['from'] }}" placeholder="Bắt đầu">
-                                            <input class="form-control-plaintext col-2" type="text"
+                                            <input class="form-control-plaintext col-3" type="text"
                                                    name="work_experience[{{ $loop->index }}][end]"
                                                    value="{{ $work_experience['end'] }}" placeholder="Kết thúc">
                                         </div>
@@ -120,7 +120,7 @@
 
                         <section class="education">
                             <h3>
-                                <div>Học vấn
+                                <div class="font-weight-bold">Học vấn
                                 </div>
                             </h3>
                             @if( !$cv['education'])
@@ -131,15 +131,15 @@
                                         <i class="delete fa fa-trash">Xóa</i>
                                     </div>
                                     <div class="form-group row mt-3">
-                                        <input class="form-control-plaintext col-2" type="text"
+                                        <input class="form-control-plaintext col-3" type="text"
                                                name="education[0][major]"
                                                value=""
                                                placeholder="Ngành">
-                                        <input class="form-control-plaintext col-2" type="text"
+                                        <input class="form-control-plaintext col-3" type="text"
                                                name="education[0][from]"
                                                value=""
                                                placeholder="Bắt đầu">
-                                        <input class="form-control-plaintext col-2" type="text" name="education[0][end]"
+                                        <input class="form-control-plaintext col-3" type="text" name="education[0][end]"
                                                value=""
                                                placeholder="Kết thúc">
                                     </div>
@@ -164,15 +164,15 @@
                                             <i class="delete fa fa-trash">Xóa</i>
                                         </div>
                                         <div class="form-group row mt-3">
-                                            <input class="form-control-plaintext col-2" type="text"
+                                            <input class="form-control-plaintext col-3" type="text"
                                                    name="education[{{ $loop->index }}][major]"
                                                    value="{{ $education['major'] }}"
                                                    placeholder="Ngành">
-                                            <input class="form-control-plaintext col-2" type="text"
+                                            <input class="form-control-plaintext col-3" type="text"
                                                    name="education[{{ $loop->index }}][from]"
                                                    value="{{ $education['from'] }}"
                                                    placeholder="Bắt đầu">
-                                            <input class="form-control-plaintext col-2" type="text"
+                                            <input class="form-control-plaintext col-3" type="text"
                                                    name="education[{{ $loop->index }}][end]"
                                                    value="{{ $education['end'] }}"
                                                    placeholder="Kết thúc">
@@ -195,7 +195,7 @@
 
                         <section class="activities">
                             <h3>
-                                <div>Hoạt động
+                                <div class="font-weight-bold">Hoạt động
                                 </div>
                             </h3>
                             @if( !$cv['activities'])
@@ -206,14 +206,14 @@
                                         <i class="delete fa fa-trash">Xóa</i>
                                     </div>
                                     <div class="form-group row mt-3">
-                                        <input class="form-control-plaintext col-2" type="text"
+                                        <input class="form-control-plaintext col-3" type="text"
                                                name="activities[0][position]"
                                                value="" placeholder="Vị trí">
-                                        <input class="form-control-plaintext col-2" type="text"
+                                        <input class="form-control-plaintext col-3" type="text"
                                                name="activities[0][from]"
                                                value=""
                                                placeholder="Bắt đầu">
-                                        <input class="form-control-plaintext col-2" type="text"
+                                        <input class="form-control-plaintext col-3" type="text"
                                                name="activities[0][end]"
                                                value=""
                                                placeholder="Kết thúc">
@@ -239,14 +239,14 @@
                                             <i class="delete fa fa-trash">Xóa</i>
                                         </div>
                                         <div class="form-group row mt-3">
-                                            <input class="form-control-plaintext col-2" type="text"
+                                            <input class="form-control-plaintext col-3" type="text"
                                                    name="activities[{{ $loop->index }}][position]"
                                                    value="{{ $activities['position'] }}" placeholder="Vị trí">
-                                            <input class="form-control-plaintext col-2" type="text"
+                                            <input class="form-control-plaintext col-3" type="text"
                                                    name="activities[{{ $loop->index }}][from]"
                                                    value="{{ $activities['from'] }}"
                                                    placeholder="Bắt đầu">
-                                            <input class="form-control-plaintext col-2" type="text"
+                                            <input class="form-control-plaintext col-3" type="text"
                                                    name="activities[{{ $loop->index }}][end]"
                                                    value="{{ $activities['end'] }}"
                                                    placeholder="Kết thúc">
@@ -269,7 +269,7 @@
 
                         <section class="certifications">
                             <h3>
-                                <div>Chứng chỉ
+                                <div class="font-weight-bold">Chứng chỉ
                                 </div>
                             </h3>
                             @if( !$cv['certifications'])
@@ -280,7 +280,7 @@
                                         <i class="delete fa fa-trash">Xóa</i>
                                     </div>
                                     <div class="form-group row mt-3">
-                                        <input class="form-control-plaintext col-2" type="text"
+                                        <input class="form-control-plaintext col-3" type="text"
                                                name="certifications[0][time]"
                                                value="" placeholder="Thời gian">
                                     </div>
@@ -300,7 +300,7 @@
                                             <i class="delete fa fa-trash">Xóa</i>
                                         </div>
                                         <div class="form-group row mt-3">
-                                            <input class="form-control-plaintext col-2" type="text"
+                                            <input class="form-control-plaintext col-3" type="text"
                                                    name="certifications[{{ $loop->index }}][time]"
                                                    value="{{ $certifications['time'] }}" placeholder="Thời gian">
                                         </div>
@@ -315,21 +315,21 @@
                             @endif
                         </section>
                     </div>
-                    <div class="col-6">
+                    <div class="col-6 pl-5">
                         <section class="profile">
                             <h3>
-                                <div>Thông tin cá nhân
+                                <div class="font-weight-bold">Thông tin cá nhân
                                 </div>
                             </h3>
                             <div class="input-item border border-light pl-2">
-                                <div class="input-group col-5">
+                                <div class="input-group col-7">
                                     <div class="input-group-prepend mr-2">
                                         <span class="form-control-plaintext"><i class="fa fa-user"></i></span>
                                     </div>
                                     <input class="form-control-plaintext" name="profile[name]" type="text"
                                            value="{{ $cv['profile']['name'] }}" placeholder="Tên">
                                 </div>
-                                <div class="input-group col-5">
+                                <div class="input-group col-7">
                                     <div class="input-group-prepend mr-2">
                                         <span class="form-control-plaintext"><i class="fa fa-calendar"></i></span>
                                     </div>
@@ -337,7 +337,7 @@
                                            value="{{ $cv['profile']['birthday'] }}">
                                 </div>
 
-                                <div class="input-group col-5">
+                                <div class="input-group col-7">
                                     <div class="input-group-prepend mr-2">
                                         <span class="form-control-plaintext"><i class="fa fa-phone"></i></span>
                                     </div>
@@ -347,7 +347,7 @@
                                            name="profile[phone]">
                                 </div>
 
-                                <div class="input-group col-5">
+                                <div class="input-group col-7">
                                     <div class="input-group-prepend mr-2">
                                         <span class="form-control-plaintext"><i class="fa fa-mail-bulk"></i></span>
                                     </div>
@@ -357,7 +357,7 @@
                                            name="profile[email]">
                                 </div>
 
-                                <div class="input-group col-5">
+                                <div class="input-group col-7">
                                     <div class="input-group-prepend mr-2">
                                         <span class="form-control-plaintext"><i class="fa fa-map-marked-alt"></i></span>
                                     </div>
@@ -371,7 +371,7 @@
 
                         <section class="objective">
                             <h3>
-                                <div>Mục tiêu nghề nghiệp
+                                <div class="font-weight-bold">Mục tiêu nghề nghiệp
                                 </div>
                             </h3>
                             <div class="input-item border border-light form-group col-7">
@@ -382,7 +382,7 @@
 
                         <section class="skills icon-add">
                             <h3>
-                                <div>Các kỹ năng
+                                <div class="font-weight-bold">Kỹ năng
                                 </div>
                             </h3>
                             @if( !$cv['skills'])
@@ -467,7 +467,7 @@
                 var value = $(this).val();
                 if (value !== '') {
                     for (var i = 0; i < json_skill.length; i++) {
-                        if (json_skill[i].includes(value)) {
+                        if (json_skill[i].toLowerCase().includes(value.toLowerCase())) {
                             $(this).parent().children('#search_value').append("<li  class='skill-value col-12 list-group-item list-group-item-action'>" + json_skill[i] + "</li>");
                         }
                     }
@@ -501,12 +501,12 @@
                 <i class="delete fa fa-trash">Xóa</i>\
             </div>\
                 <div class="form-group row mt-3">\
-                    <input class="form-control-plaintext col-2" type="text" name="activities[' + window.activities_index + '][position]"\
+                    <input class="form-control-plaintext col-3" type="text" name="activities[' + window.activities_index + '][position]"\
                            value="" placeholder="Vị trí">\
-                        <input class="form-control-plaintext col-2" type="text" name="activities[' + window.activities_index + '][from]"\
+                        <input class="form-control-plaintext col-3" type="text" name="activities[' + window.activities_index + '][from]"\
                                value=""\
                                placeholder="Bắt đầu">\
-                            <input class="form-control-plaintext col-2" type="text" name="activities[' + window.activities_index + '][end]"\
+                            <input class="form-control-plaintext col-3" type="text" name="activities[' + window.activities_index + '][end]"\
                                    value=""\
                                    placeholder="Kết thúc">\
                 </div>\
@@ -530,7 +530,7 @@
                 <i class="delete fa fa-trash">Xóa</i>\
             </div>\
                 <div class="form-group row mt-3">\
-                    <input class="form-control-plaintext col-2" type="text" name="certifications[' + window.certifications_index + '][time]"\
+                    <input class="form-control-plaintext col-3" type="text" name="certifications[' + window.certifications_index + '][time]"\
                            value="" placeholder="Thời gian">\
                 </div>\
                 <div class="form-group row">\
@@ -548,13 +548,13 @@
                         <i class="delete fa fa-trash">Xóa</i>\
                     </div>\
                     <div class="form-group row mt-3">\
-                        <input class="form-control-plaintext col-2" type="text" name="education[' + window.education_index + '][major]"\
+                        <input class="form-control-plaintext col-3" type="text" name="education[' + window.education_index + '][major]"\
                                value=""\
                                placeholder="Ngành">\
-                            <input class="form-control-plaintext col-2" type="text" name="education[' + window.education_index + '][from]"\
+                            <input class="form-control-plaintext col-3" type="text" name="education[' + window.education_index + '][from]"\
                                    value=""\
                                    placeholder="Bắt đầu">\
-                                <input class="form-control-plaintext col-2" type="text" name="education[' + window.education_index + '][end]"\
+                                <input class="form-control-plaintext col-3" type="text" name="education[' + window.education_index + '][end]"\
                                        value=""\
                                        placeholder="Kết thúc">\
                     </div>\
@@ -578,12 +578,12 @@
                 <i class="delete fa fa-trash">Xóa</i>\
             </div>\
                 <div class="form-group row mt-3">\
-                    <input class="form-control-plaintext col-2" type="text"\
+                    <input class="form-control-plaintext col-3" type="text"\
                            name="work_experience[' + window.work_experience_index + '][position]"\
                            value="" placeholder="Vị trí">\
-                        <input class="form-control-plaintext col-2" type="text" name="work_experience[' + window.work_experience_index + '][from]"\
+                        <input class="form-control-plaintext col-3" type="text" name="work_experience[' + window.work_experience_index + '][from]"\
                                value="" placeholder="Bắt đầu">\
-                            <input class="form-control-plaintext col-2" type="text" name="work_experience[' + window.work_experience_index + '][end]"\
+                            <input class="form-control-plaintext col-3" type="text" name="work_experience[' + window.work_experience_index + '][end]"\
                                    value="" placeholder="Kết thúc">\
                 </div>\
                 <div class="form-group row">\
@@ -600,7 +600,7 @@
             });
             $(document).on("click", ".add-skill", function () {
                 $(this).parent().parent().after('\
-                <div class="input-item border border-light skill col-6 pb-2 mt-2 pl-2">\
+                <div class="input-item border border-light skill col-6 pb-2 mt-2">\
                     <div class="type-icon position-absolute justify-content-center ml-5 d-none" style="z-index: 1;">\
                     <i class="add-skill fa fa-plus-circle">Thêm</i>\
                     <i class="delete fa fa-trash">Xóa</i>\

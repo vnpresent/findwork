@@ -18,6 +18,22 @@
         @csrf
         <div class="container">
             <div class="col-10 mx-auto" style="background: #fafafa">
+                @if(session('error'))
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        {{ session('error') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
+                @if(session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
                 <section class="profile mt-5">
                     <div class="col-3 mx-auto">
                         <input class="form-control-plaintext text-center" type="text" name="name" value="Untitled CV"
@@ -32,10 +48,10 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-6 pl-5">
                         <section class="work_experience">
                             <h3>
-                                <div>Kinh nghiệm làm việc
+                                <div class="font-weight-bold">Kinh nghiệm làm việc
                                 </div>
                             </h3>
 
@@ -46,13 +62,13 @@
                                     <i class="delete fa fa-trash">Xóa</i>
                                 </div>
                                 <div class="form-group row mt-3">
-                                    <input class="form-control-plaintext col-2" type="text"
+                                    <input class="form-control-plaintext col-3" type="text"
                                            name="work_experience[0][position]"
                                            value="" placeholder="Vị trí">
-                                    <input class="form-control-plaintext col-2" type="text"
+                                    <input class="form-control-plaintext col-3" type="text"
                                            name="work_experience[0][from]"
                                            value="" placeholder="Bắt đầu">
-                                    <input class="form-control-plaintext col-2" type="text"
+                                    <input class="form-control-plaintext col-3" type="text"
                                            name="work_experience[0][end]"
                                            value="" placeholder="Kết thúc">
                                 </div>
@@ -71,7 +87,7 @@
 
                         <section class="education">
                             <h3>
-                                <div>Học vấn
+                                <div class="font-weight-bold">Học vấn
                                 </div>
                             </h3>
                             <div class="input-item border border-light pl-2">
@@ -81,13 +97,13 @@
                                     <i class="delete fa fa-trash">Xóa</i>
                                 </div>
                                 <div class="form-group row mt-3">
-                                    <input class="form-control-plaintext col-2" type="text" name="education[0][major]"
+                                    <input class="form-control-plaintext col-3" type="text" name="education[0][major]"
                                            value=""
                                            placeholder="Ngành">
-                                    <input class="form-control-plaintext col-2" type="text" name="education[0][from]"
+                                    <input class="form-control-plaintext col-3" type="text" name="education[0][from]"
                                            value=""
                                            placeholder="Bắt đầu">
-                                    <input class="form-control-plaintext col-2" type="text" name="education[0][end]"
+                                    <input class="form-control-plaintext col-3" type="text" name="education[0][end]"
                                            value=""
                                            placeholder="Kết thúc">
                                 </div>
@@ -106,7 +122,7 @@
 
                         <section class="activities">
                             <h3>
-                                <div>Hoạt động
+                                <div class="font-weight-bold">Hoạt động
                                 </div>
                             </h3>
                             <div class="input-item border border-light pl-2">
@@ -116,13 +132,13 @@
                                     <i class="delete fa fa-trash">Xóa</i>
                                 </div>
                                 <div class="form-group row mt-3">
-                                    <input class="form-control-plaintext col-2" type="text"
+                                    <input class="form-control-plaintext col-3" type="text"
                                            name="activities[0][position]"
                                            value="" placeholder="Vị trí">
-                                    <input class="form-control-plaintext col-2" type="text" name="activities[0][from]"
+                                    <input class="form-control-plaintext col-3" type="text" name="activities[0][from]"
                                            value=""
                                            placeholder="Bắt đầu">
-                                    <input class="form-control-plaintext col-2" type="text" name="activities[0][end]"
+                                    <input class="form-control-plaintext col-3" type="text" name="activities[0][end]"
                                            value=""
                                            placeholder="Kết thúc">
                                 </div>
@@ -141,7 +157,7 @@
 
                         <section class="certifications">
                             <h3>
-                                <div>Chứng chỉ
+                                <div class="font-weight-bold">Chứng chỉ
                                 </div>
                             </h3>
                             <div class="input-item border border-light pl-2">
@@ -151,7 +167,7 @@
                                     <i class="delete fa fa-trash">Xóa</i>
                                 </div>
                                 <div class="form-group row mt-3">
-                                    <input class="form-control-plaintext col-2" type="text"
+                                    <input class="form-control-plaintext col-3" type="text"
                                            name="certifications[0][time]"
                                            value="" placeholder="Thời gian">
                                 </div>
@@ -164,51 +180,51 @@
                             </div>
                         </section>
                     </div>
-                    <div class="col-6">
+                    <div class="col-6 pl-5">
                         <section class="profile">
                             <h3>
-                                <div>Thông tin cá nhân
+                                <div class="font-weight-bold">Thông tin cá nhân
                                 </div>
                             </h3>
                             <div class="input-item border border-light pl-2">
-                                <div class="input-group col-5">
+                                <div class="input-group col-7">
                                     <div class="input-group-prepend mr-2">
                                         <span class="form-control-plaintext"><i class="fa fa-user"></i></span>
                                     </div>
                                     <input class="form-control-plaintext" name="profile[name]" type="text"
                                            value="{{ auth('applicant')->user()->name }}" placeholder="Tên">
                                 </div>
-                                <div class="input-group col-5">
+                                <div class="input-group col-7">
                                     <div class="input-group-prepend mr-2">
                                         <span class="form-control-plaintext"><i class="fa fa-calendar"></i></span>
                                     </div>
                                     <input type="date" class="form-control-plaintext" name="profile[birthday]"
-                                           value="{{ now() }}">
+                                           value="{{ auth('applicant')->user()->birthday }}">
                                 </div>
 
-                                <div class="input-group col-5">
+                                <div class="input-group col-7">
                                     <div class="input-group-prepend mr-2">
                                         <span class="form-control-plaintext"><i class="fa fa-phone"></i></span>
                                     </div>
-                                    <input type="text" class="form-control-plaintext" value="0337646312"
+                                    <input type="text" class="form-control-plaintext" value="{{ auth('applicant')->user()->phone }}"
                                            placeholder="Số điện thoại"
                                            name="profile[phone]">
                                 </div>
 
-                                <div class="input-group col-5">
+                                <div class="input-group col-7">
                                     <div class="input-group-prepend mr-2">
                                         <span class="form-control-plaintext"><i class="fa fa-mail-bulk"></i></span>
                                     </div>
-                                    <input type="text" class="form-control-plaintext" value="vietphuong@gmail.com"
+                                    <input type="text" class="form-control-plaintext" value="{{ auth('applicant')->user()->Email }}"
                                            placeholder="Email"
                                            name="profile[email]">
                                 </div>
 
-                                <div class="input-group col-5">
+                                <div class="input-group col-7">
                                     <div class="input-group-prepend mr-2">
                                         <span class="form-control-plaintext"><i class="fa fa-map-marked-alt"></i></span>
                                     </div>
-                                    <input type="text" class="form-control-plaintext" value="175 Tây Sơn"
+                                    <input type="text" class="form-control-plaintext" value="{{ auth('applicant')->user()->address }}"
                                            placeholder="Địa chỉ"
                                            name="profile[address]">
                                 </div>
@@ -217,7 +233,7 @@
 
                         <section class="objective">
                             <h3>
-                                <div>Mục tiêu nghề nghiệp
+                                <div class="font-weight-bold">Mục tiêu nghề nghiệp
                                 </div>
                             </h3>
                             <div class="input-item border border-light form-group col-7">
@@ -228,10 +244,10 @@
 
                         <section class="skills icon-add">
                             <h3>
-                                <div>Các kỹ năng
+                                <div class="font-weight-bold">Kỹ năng
                                 </div>
                             </h3>
-                            <div class="input-item border border-light skill col-6 pb-2 mt-2 pl-2">
+                            <div class="input-item border border-light skill col-8 pb-2 mt-2 pl-2">
                                 <div class="type-icon position-absolute justify-content-center ml-5 d-none"
                                      style="z-index: 1;">
                                     <i class="add-skill fa fa-plus-circle">Thêm</i>
@@ -285,7 +301,7 @@
                 var value = $(this).val();
                 if (value !== '') {
                     for (var i = 0; i < json_skill.length; i++) {
-                        if (json_skill[i].includes(value)) {
+                        if (json_skill[i].toLowerCase().includes(value.toLowerCase())) {
                             $(this).parent().children('#search_value').append("<li  class='skill-value col-12 list-group-item list-group-item-action'>" + json_skill[i] + "</li>");
                         }
                     }
@@ -313,18 +329,18 @@
                 }
             });
             $(document).on("click", ".add-activities", function () {
-                $(this).parent().parent().after('<div class="input-item border border-light">\
+                $(this).parent().parent().after('<div class="input-item border border-light pl-2">\
                     <div class="type-icon position-absolute justify-content-center ml-5 d-none" style="z-index: 1;">\
                     <i class="add-activities fa fa-plus-circle">Thêm</i>\
                 <i class="delete fa fa-trash">Xóa</i>\
             </div>\
                 <div class="form-group row mt-3">\
-                    <input class="form-control-plaintext col-2" type="text" name="activities[' + window.activities_index + '][position]"\
+                    <input class="form-control-plaintext col-3" type="text" name="activities[' + window.activities_index + '][position]"\
                            value="" placeholder="Vị trí">\
-                        <input class="form-control-plaintext col-2" type="text" name="activities[' + window.activities_index + '][from]"\
+                        <input class="form-control-plaintext col-3" type="text" name="activities[' + window.activities_index + '][from]"\
                                value=""\
                                placeholder="Bắt đầu">\
-                            <input class="form-control-plaintext col-2" type="text" name="activities[' + window.activities_index + '][end]"\
+                            <input class="form-control-plaintext col-3" type="text" name="activities[' + window.activities_index + '][end]"\
                                    value=""\
                                    placeholder="Kết thúc">\
                 </div>\
@@ -342,13 +358,13 @@
                 window.skill_index = window.activities_index + 1;
             });
             $(document).on("click", ".add-certifications", function () {
-                $(this).parent().parent().after('<div class="input-item border border-light">\
+                $(this).parent().parent().after('<div class="input-item border border-light pl-2">\
                     <div class="type-icon position-absolute justify-content-center ml-5 d-none" style="z-index: 1;">\
                     <i class="add-certifications fa fa-plus-circle">Thêm</i>\
                 <i class="delete fa fa-trash">Xóa</i>\
             </div>\
                 <div class="form-group row mt-3">\
-                    <input class="form-control-plaintext col-2" type="text" name="certifications[' + window.certifications_index + '][time]"\
+                    <input class="form-control-plaintext col-3" type="text" name="certifications[' + window.certifications_index + '][time]"\
                            value="" placeholder="Thời gian">\
                 </div>\
                 <div class="form-group row">\
@@ -360,19 +376,19 @@
                 window.skill_index = window.certifications_index + 1;
             });
             $(document).on("click", ".add-education", function () {
-                $(this).parent().parent().after('<div class="input-item border border-light">\
+                $(this).parent().parent().after('<div class="input-item border border-light pl-2">\
                     <div class="type-icon position-absolute justify-content-center ml-5 d-none" style="z-index: 1;">\
                         <i class="add-education fa fa-plus-circle">Thêm</i>\
                         <i class="delete fa fa-trash">Xóa</i>\
                     </div>\
                     <div class="form-group row mt-3">\
-                        <input class="form-control-plaintext col-2" type="text" name="education[' + window.education_index + '][major]"\
+                        <input class="form-control-plaintext col-3" type="text" name="education[' + window.education_index + '][major]"\
                                value=""\
                                placeholder="Ngành">\
-                            <input class="form-control-plaintext col-2" type="text" name="education[' + window.education_index + '][from]"\
+                            <input class="form-control-plaintext col-3" type="text" name="education[' + window.education_index + '][from]"\
                                    value=""\
                                    placeholder="Bắt đầu">\
-                                <input class="form-control-plaintext col-2" type="text" name="education[' + window.education_index + '][end]"\
+                                <input class="form-control-plaintext col-3" type="text" name="education[' + window.education_index + '][end]"\
                                        value=""\
                                        placeholder="Kết thúc">\
                     </div>\
@@ -390,18 +406,18 @@
                 window.skill_index = window.education_index + 1;
             });
             $(document).on("click", ".add-work_experience", function () {
-                $(this).parent().parent().after('<div class="input-item border border-light">\
+                $(this).parent().parent().after('<div class="input-item border border-light pl-2">\
                     <div class="type-icon position-absolute justify-content-center ml-5 d-none" style="z-index: 1;">\
                     <i class="add-work_experience fa fa-plus-circle">Thêm</i>\
                 <i class="delete fa fa-trash">Xóa</i>\
             </div>\
                 <div class="form-group row mt-3">\
-                    <input class="form-control-plaintext col-2" type="text"\
+                    <input class="form-control-plaintext col-3" type="text"\
                            name="work_experience[' + window.work_experience_index + '][position]"\
                            value="" placeholder="Vị trí">\
-                        <input class="form-control-plaintext col-2" type="text" name="work_experience[' + window.work_experience_index + '][from]"\
+                        <input class="form-control-plaintext col-3" type="text" name="work_experience[' + window.work_experience_index + '][from]"\
                                value="" placeholder="Bắt đầu">\
-                            <input class="form-control-plaintext col-2" type="text" name="work_experience[' + window.work_experience_index + '][end]"\
+                            <input class="form-control-plaintext col-3" type="text" name="work_experience[' + window.work_experience_index + '][end]"\
                                    value="" placeholder="Kết thúc">\
                 </div>\
                 <div class="form-group row">\

@@ -36,6 +36,19 @@ class AuthServiceProvider extends ServiceProvider
             return false;
         });
 
+
+        Gate::define('delete-cv', function ($user, $cv) {
+            if ($cv = Cv::find($cv)) {
+                if (auth('applicant')->user() != null && $cv->applicant_id == auth('applicant')->user()->id) {
+                    return true;
+                }
+                if (auth('manager')->user() != null && auth('manager')->user()->hasPermission('delete_cv')) {
+                    return true;
+                }
+            }
+            return false;
+        });
+
         Gate::define('check', function ($user) {
             dd($user);
 //            if (auth('manager')->user() != null && auth('manager')->user()->hasPermission($permission))
